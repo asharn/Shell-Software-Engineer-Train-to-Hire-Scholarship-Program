@@ -1,0 +1,26 @@
+{
+  "name": "typescript-exercise",
+  "version": "1.0.0",
+  "description": "TypeScript Exercise",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "jasmine": "jasmine",
+    "test": "npm run build && npm run jasmine",
+    "start": "nodemon src/index.ts"
+  },
+  "author": "Udacity",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/jasmine": "^4.0.3",
+    "nodemon": "^2.0.18",
+    "ts-node": "^9.0.0",
+    "typescript": "^4.0.5"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "jasmine": "^4.2.1",
+    "jasmine-spec-reporter": "^7.0.0"
+  }
+}
