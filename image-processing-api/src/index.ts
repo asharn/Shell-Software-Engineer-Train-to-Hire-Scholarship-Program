@@ -7,10 +7,10 @@
 
   const app = express();
 
-    //Rate limit for each API'a
+    //Rate limit for each API's to stop D-Dos attack
     const limiter = rateLimit({
         windowMs: 60 * 1000, // 1 minute
-        max: 5, // limit each IP to 2 requests per windowMs
+        max: 5, // limit each IP to 5 requests per windowMs
         message: "Too many request created from this IP, please try again after a minute"
       });
 
