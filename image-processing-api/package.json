@@ -6,14 +6,19 @@
   "scripts": {
     "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
     "lint": "eslint . --ext .ts",
-    "build": "npx tsc"
+    "build": "npx tsc",
+    "jasmine": "jasmine",
+    "test": "npm run build && npm run jasmine"
   },
   "author": "Ashish Karn",
   "license": "ISC",
   "devDependencies": {
+    "@types/jasmine": "^4.0.3",
     "eslint": "^8.8.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "jasmine": "^4.2.1",
+    "jasmine-spec-reporter": "^7.0.0",
     "prettier": "^2.5.1"
   },
   "dependencies": {
