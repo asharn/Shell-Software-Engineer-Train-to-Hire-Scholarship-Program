@@ -1,0 +1,15 @@
+{
+  "name": "npm",
+  "version": "1.0.0",
+  "description": "Will be used to practice NPM tools.",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --config .prettierrc \"src/**/*.js\" --write"
+  },
+  "author": "AshishKarn",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "prettier": "^2.7.1"
+  }
+}
