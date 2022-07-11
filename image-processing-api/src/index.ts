@@ -1,9 +1,10 @@
 
   import express from 'express';
-  const morgan = require("morgan");
-  const helmet = require("helmet");
-  const cors = require("cors");
-  const rateLimit = require("express-rate-limit");
+  import morgan from "morgan";
+  import helmet from "helmet";
+  import cors from "cors";
+  import rateLimit from "express-rate-limit";
+  import sharp from 'sharp';
 
   const app = express();
 
