@@ -1,11 +1,15 @@
 
   import express from 'express';
-  const morgan = require("morgan")
+  const morgan = require("morgan");
+  const helmet = require("helmet");
+  const cors = require("cors");
 
   const app = express();
 
   // Middlewares
-  app.use(morgan("common"))
+  app.use(morgan("common"));
+  app.use(helmet());
+  app.use(cors());
 
   // Port
   const port = 3000;
