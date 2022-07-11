@@ -1,0 +1,22 @@
+{
+  "name": "image-processing-api",
+  "version": "1.0.0",
+  "description": "This package will help to resize jpg images and help to fetch image of the required size in very fast way.",
+  "main": "index.js",
+  "scripts": {
+    "prettier": "prettier --config .prettierrc \"src/**/*.ts\" --write",
+    "lint": "eslint . --ext .ts",
+    "build": "npx tsc"
+  },
+  "author": "Ashish Karn",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.8.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "prettier": "^2.5.1"
+  },
+  "dependencies": {
+    "typescript": "^4.7.4"
+  }
+}
