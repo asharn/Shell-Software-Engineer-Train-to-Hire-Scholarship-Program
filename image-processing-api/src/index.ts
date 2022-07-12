@@ -5,7 +5,6 @@ import cors from 'cors';
 import rateLimit from 'express-rate-limit';
 import routes from './routes/index';
 import {constants} from './utilities/constants';
-//import sharp from 'sharp';
 
 const app = express();
 
@@ -24,7 +23,7 @@ app.use(limiter); //  apply to all requests
 
 // Port
 const port = constants.port;
-
+app.setMaxListeners(5);
 app.listen(port, () => {
 	console.log(`Server started at localhost:${port}`);
 });

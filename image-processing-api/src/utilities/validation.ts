@@ -8,13 +8,6 @@ interface QueryParam {
 const validateMandatoryParams = (query: QueryParam): boolean => {
 	const params: string[] = ['filename', 'width', 'height'];
 	const paramsKeys: string[] = Object.keys(query);
-	console.log('paramsKeys : ', paramsKeys);
-	console.log('Is height a Number : ', !isNaN(+query.height));
-	console.log('Is width a Number : ', !isNaN(+query.width));
-	console.log(
-		'Is params matches : ',
-		params.sort().toString() === paramsKeys.sort().toString()
-	);
 	return (
 		params.sort().toString() === paramsKeys.sort().toString() &&
 		!isNaN(+query.height) &&
