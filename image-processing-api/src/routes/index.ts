@@ -1,15 +1,19 @@
 import express from 'express';
+import {constants} from '../utilities/constants';
+import apiRoutes from '../routes/api/index';
 
 const routes = express.Router();
 
-routes.get('/', (req, res) => {
+routes.get(constants.rootPathUrl, (req, res) => {
 	res.json({
 		message: 'Hello Stranger! You are not at right API.',
 	});
 });
 
-routes.get('/route', (req, res) => {
-	res.send('Hello, You called, api route!');
+routes.get(constants.checkPathUrl, (req, res) => {
+	res.send('Your server is UP and running correctly! :)');
 });
+
+routes.use(constants.apiPathUrl, apiRoutes);
 
 export default routes;
