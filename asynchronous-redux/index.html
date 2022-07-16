@@ -7,12 +7,12 @@
     <script src="https://unpkg.com/react@17.0.2/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@17.0.2/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone@7.17.6/babel.min.js"></script>
+    <script src="https://tylermcginnis.com/goals-todos-api/index.js"></script>
+
   </head>
 
   <body>
-    <div id="app">
-    </div>
-
+    <div id="app">  </div>
 
     <script type='text/javascript'>
       function generateId() {
@@ -25,6 +25,7 @@
       const TOGGLE_TODO = 'TOGGLE_TODO';
       const ADD_GOAL = 'ADD_GOAL';
       const REMOVE_GOAL = 'REMOVE_GOAL';
+      const RECEIVE_DATA = 'RECEIVE_DATA';
 
       function addTodoAction(todo) {
         return {
@@ -60,7 +61,15 @@
           id,
         }
       }
-      
+
+      function receiveDataAction(todos, goals){
+        return{
+          type: RECEIVE_DATA,
+          todos,
+          goals
+        };
+      }
+
       function todos(state = [], action) {
         switch (action.type) {
         case ADD_TODO:
@@ -72,6 +81,8 @@
             Object.assign({}, todo, {
               complete: !todo.complete
             }));
+        case RECEIVE_DATA:
+          return action.todos;
         default:
           return state;
         }
@@ -83,21 +94,57 @@
           return state.concat([action.goal]);
         case REMOVE_GOAL:
           return state.filter((goal) => goal.id !== action.id);
+        case RECEIVE_DATA:
+          return action.goals;
         default:
           return state;
         }
       }
-      const store = Redux.createStore(Redux.combineReducers({
-        todos,
-        goals,
-      }));
+      
+      const checker = (store) => (next) => (action) => {
+        if (
+          action.type === ADD_TODO &&
+          action.todo.name.toLowerCase().includes("bitcoin")
+        ) {
+          return alert("Nope. That's a bad idea.");
+        }
 
-      store.subscribe(() => {
-        const {
+        if (
+          action.type === ADD_GOAL &&
+          action.goal.name.toLowerCase().includes("bitcoin")
+        ) {
+          return alert("Nope. That's a bad idea.");
+        }
+
+        return next(action);
+      };
+
+      const logger = (store) => (next) => (action) => {
+        console.group(action.type);
+        console.log("The action: ", action);
+        const result = next(action);
+        console.log("The new state: ", store.getState());
+        console.groupEnd();
+        return result;
+      };
+
+      function loading(state = true, action) {
+        switch (action.type) {
+          case RECEIVE_DATA:
+            return false;
+          default:
+            return state;
+        }
+      }
+
+      const store = Redux.createStore(
+        Redux.combineReducers({
+          todos,
           goals,
-          todos
-        } = store.getState();
-      });
+          loading
+        }),
+        Redux.applyMiddleware(checker, logger)
+      );
     </script>
 
     <script type="text/babel">
@@ -185,12 +232,22 @@
       const App = (props) =>{
         const [valu, setValue] = React.useState(0);
         React.useEffect(()=>{
+          Promise.all([API.fetchTodos(),API.fetchGoals()]).then(
+            ([todos, goals]) => {
+              props.store.dispatch(receiveDataAction(todos, goals));
+            }
+          );
           props.store.subscribe(() => {
             setValue((value)=>value+1);
           });
         }, []);
 
-        const {todos, goals} = props.store.getState();
+        const {todos, goals, loading} = props.store.getState();
+
+        if (loading === true) {
+          return <h3>Loading</h3>;
+        }
+
         return(
           <div>
             <Todos todos={todos} store={props.store}/>
