@@ -71,6 +71,19 @@
         };
       }
 
+      function handleAddTodo(name, cb) {
+        return (dispatch) => {
+          return API.saveTodo(name)
+            .then((todo) => {
+              dispatch(addTodoAction(todo));
+              cb();
+            })
+            .catch(() => {
+              alert("There was an error. Try again.");
+            });
+        };
+      }
+
       function handleDeleteTodo(todo) {
         return (dispatch) => {
           dispatch(removeTodoAction(todo.id));
@@ -79,6 +92,49 @@
             dispatch(addTodoAction(todo));
             alert("An error occurred. Try again.");
           });
+        };
+      }
+
+      function handleToggle(id) {
+        return (dispatch) => {
+          dispatch(toggleTodoAction(id));
+
+          return API.saveTodoToggle(id).catch(() => {
+            dispatch(toggleTodoAction(id));
+            alert("An error occurred. Try again.");
+          });
+        };
+      }
+
+      function handleAddGoal(name, cb) {
+        return (dispatch) => {
+          return API.saveGoal(name)
+            .then((goal) => {
+              dispatch(addGoalAction(goal));
+              cb();
+            })
+            .catch(() => alert("There was an error. Try again."));
+        };
+      }
+
+      function handleDeleteGoal(goal) {
+        return (dispatch) => {
+          dispatch(removeGoalAction(goal.id));
+
+          return API.deleteGoal(goal.id).catch(() => {
+            dispatch(addGoalAction(goal));
+            alert("An error occurred. Try again.");
+          });
+        };
+      }
+
+      function handleInitialData() {
+        return (dispatch) => {
+          return Promise.all([API.fetchTodos(), API.fetchGoals()]).then(
+            ([todos, goals]) => {
+              dispatch(receiveDataAction(todos, goals));
+            }
+          );
         };
       }
 
@@ -186,14 +242,12 @@
 
         const addItem = (e) =>{
           e.preventDefault();
-          return API.saveTodo(inputRef.current.value)
-            .then((todo) => {
-              props.store.dispatch(addTodoAction(todo));
-              inputRef.current.value = "";
-            })
-            .catch(() => {
-              alert("There was an error. Try again.");
-            });
+          props.store.dispatch(
+            handleAddTodo(
+              inputRef.current.value,
+              () => (inputRef.current.value = "")
+            )
+          );
         };
 
         const removeItem = (todo) => {
@@ -201,11 +255,7 @@
         };
 
         const toggleItem = (id) => {
-          props.store.dispatch(toggleTodoAction(id));
-          return API.saveTodoToggle(id).catch(() => {
-            props.store.dispatch(toggleTodoAction(id));
-            alert("An error occurred. Try again.");
-          });
+          props.store.dispatch(handleToggle(id));
         };
 
         return(
@@ -224,20 +274,16 @@
 
         const addItem = (e) =>{
           e.preventDefault();
-          return API.saveGoal(inputRef.current.value)
-            .then((goal) => {
-              props.store.dispatch(addGoalAction(goal));
-              inputRef.current.value = "";
-            })
-            .catch(() => alert("There was an error. Try again."));
+          props.store.dispatch(
+            handleAddGoal(
+              inputRef.current.value,
+              () => (inputRef.current.value = "")
+            )
+          );
         };
 
         const removeItem = (goal) => {
-          props.store.dispatch(removeGoalAction(goal.id));
-          return API.deleteGoal(goal.id).catch(() => {
-            props.store.dispatch(addGoalAction(goal));
-            alert("An error occurred. Try again.");
-          });
+          props.store.dispatch(handleDeleteGoal(goal));
         };
 
         return(
@@ -253,11 +299,7 @@
       const App = (props) =>{
         const [valu, setValue] = React.useState(0);
         React.useEffect(()=>{
-          Promise.all([API.fetchTodos(),API.fetchGoals()]).then(
-            ([todos, goals]) => {
-              props.store.dispatch(receiveDataAction(todos, goals));
-            }
-          );
+          store.dispatch(handleInitialData());
           props.store.subscribe(() => {
             setValue((value)=>value+1);
           });
