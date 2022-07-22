@@ -5,8 +5,8 @@ const LeaderBoard = () => {
     <div
       style={{
         display: 'flex',
-        justifyContent: 'Right',
-        alignItems: 'Right',
+        justifyContent: 'center',
+        alignItems: 'center',
         height: '100vh'
       }}
     >

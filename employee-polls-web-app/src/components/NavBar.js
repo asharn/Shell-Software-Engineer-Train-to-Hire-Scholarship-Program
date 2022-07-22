@@ -21,7 +21,7 @@ const theme = createTheme({
 
 const NavButton = (props) => {
     return(
-        <Button color='inherit' href={props.text.toLowerCase()} theme={theme}>{props.text}</Button>
+        <Button color='inherit' href={props.href} theme={theme}>{props.text}</Button>
     )
 }
 
@@ -30,35 +30,38 @@ const NavBar = () => {
         <div>
         <AppBar position="static">
             <Toolbar>
-                <IconButton href="/" size='large' edge='start' color='inherit' aria-label='logo' sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }}>
-                    <PollRounded/>
-                </IconButton>
-                <Typography variant="h6"
-                            noWrap
-                            component="a"
-                            href="/"
-                            sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                            }}>
-                Employee Polls
-                </Typography>
-                <Stack direction='row' justifyContent="center" alignItems="center" spacing={5} divider={<Divider orientation="vertical" flexItem/>}>
-                    <Stack direction='row' justifyContent="center" alignItems="center" spacing={2}>
-                        <NavButton text={'Home'} to='/'/>
-                        <NavButton text={'Leaderboard'}/>
-                        <NavButton text={'New'}/>
+                <Stack direction='row' justifyContent="center" alignItems="center">
+                    <IconButton href="/" size='large' edge='start' color='inherit' aria-label='logo'>
+                        <PollRounded/>
+                    </IconButton>
+                    <Typography variant="h6"
+                                noWrap
+                                component="a"
+                                href="/"
+                                sx={{
+                                mr: 2,
+                                display: { xs: 'none', md: 'flex' },
+                                fontFamily: 'monospace',
+                                fontWeight: 700,
+                                letterSpacing: '.3rem',
+                                color: 'inherit',
+                                textDecoration: 'none'
+                                }}>
+                    Employee Polls
+                    </Typography>
+                </Stack>
+                <Stack direction='row' spacing={5} divider={<Divider orientation="vertical" flexItem/>}>
+                    <Stack direction='row' spacing={2}>
+                        <NavButton text={'Home'} href={'/'}/>
+                        <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
+                        <NavButton text={'New'} href={'/add'}/>
                     </Stack>
                     <ButtonGroup>
-                        <NavButton text={'SignIn'}/>
-                        <NavButton text={'SignUp'}/>
+                        <NavButton text={'SignIn'} href={'/sign-in'}/>
+                        <NavButton text={'SignUp'} href={'/sign-up'}/>
                     </ButtonGroup>
                 </Stack>
+                
             </Toolbar>
         </AppBar>
         </div>
