@@ -1,5 +1,4 @@
-import { saveQuestion, saveQuestionAnswer } from '../utils/api';
-import { handleAddQuestion, handleAddQuestionAnswer } from '../actions/questions';
+import { saveQuestionAnswer } from '../utils/api';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_ANSWER_TO_USER = 'ADD_ANSWER_TO_USER';

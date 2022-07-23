@@ -7,7 +7,7 @@ const Home = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh'
+        height: '80vh'
       }}
     >
       <h1>Welcome to Employee Polls</h1>

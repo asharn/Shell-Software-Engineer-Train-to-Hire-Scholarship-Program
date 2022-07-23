@@ -7,7 +7,7 @@ const LeaderBoard = () => {
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '100vh'
+        height: '80vh'
       }}
     >
       <h1>Welcome to LeaderBoard</h1>

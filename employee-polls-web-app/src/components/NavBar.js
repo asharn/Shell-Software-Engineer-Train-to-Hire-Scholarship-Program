@@ -50,16 +50,16 @@ const NavBar = () => {
                     Employee Polls
                     </Typography>
                 </Stack>
-                <Stack direction='row' spacing={5} divider={<Divider orientation="vertical" flexItem/>}>
+                <Stack direction='row' spacing={10} divider={<Divider orientation="vertical" flexItem sx={{marginLeft: 10}}/>}>
                     <Stack direction='row' spacing={2}>
                         <NavButton text={'Home'} href={'/'}/>
                         <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
                         <NavButton text={'New'} href={'/add'}/>
                     </Stack>
-                    <ButtonGroup>
+                    <Stack direction='row' spacing={2}>
                         <NavButton text={'SignIn'} href={'/sign-in'}/>
                         <NavButton text={'SignUp'} href={'/sign-up'}/>
-                    </ButtonGroup>
+                    </Stack>
                 </Stack>
                 
             </Toolbar>
