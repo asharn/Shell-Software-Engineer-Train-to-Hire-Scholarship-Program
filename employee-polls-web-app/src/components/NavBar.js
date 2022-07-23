@@ -30,6 +30,7 @@ const NavBar = () => {
         <div>
         <AppBar position="static">
             <Toolbar>
+                <Stack direction='row' spacing={{ xs: 3, sm: 6, md: 12 }} justifyContent="center" alignItems="center" divider={<Divider orientation="vertical" flexItem />}>
                 <Stack direction='row' justifyContent="center" alignItems="center">
                     <IconButton href="/" size='large' edge='start' color='inherit' aria-label='logo'>
                         <PollRounded/>
@@ -50,7 +51,6 @@ const NavBar = () => {
                     Employee Polls
                     </Typography>
                 </Stack>
-                <Stack direction='row' spacing={10} divider={<Divider orientation="vertical" flexItem sx={{marginLeft: 10}}/>}>
                     <Stack direction='row' spacing={2}>
                         <NavButton text={'Home'} href={'/'}/>
                         <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
@@ -61,7 +61,6 @@ const NavBar = () => {
                         <NavButton text={'SignUp'} href={'/sign-up'}/>
                     </Stack>
                 </Stack>
-                
             </Toolbar>
         </AppBar>
         </div>

@@ -3,13 +3,13 @@ import * as React from 'react';
 
 function Copyright(props) {
     return (
-      <Typography variant="body2" color="text.secondary" align="center" {...props}>
-        {'Copyright © '}
-        <Link color="inherit" href="/">
-          Employee Polls
-        </Link>{' '}
+      <Typography variant="body1" color="white" align="center" {...props}>
+        Copyright © 
+        <Link color="inherit" href="/" >
+        &nbsp;Employee Polls  
+        </Link>&nbsp;&nbsp;
         {new Date().getFullYear()}
-        {'.'}
+        .
       </Typography>
     );
   }

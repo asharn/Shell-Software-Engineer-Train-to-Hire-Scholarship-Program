@@ -9,21 +9,59 @@ import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Visibility from '@mui/icons-material/Visibility';
+import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import Copyright from './Copyright';
+import { setAuthedUser } from '../actions/authedUser';
+import { connect } from 'react-redux';
+import { IconButton, InputAdornment } from '@mui/material';
+import { useNavigate} from "react-router-dom";
+
+
 
 const theme = createTheme();
 
-export default function SignIn() {
+const SignIn = (props) => {
+  React.useEffect(() => {
+  }, []);
+  const navigate = useNavigate();
+  console.log('Component SignIn props', props);
+
+  const [showPassword, setShowPassword] = React.useState(false);
+  const handleClickShowPassword = () => setShowPassword(!showPassword);
+  const { users } = props;
+  console.log('SignIn submit button clicked', users);
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const username = data.get('username');
+    const password = data.get('password');
     console.log({
-      username: data.get('username'),
-      password: data.get('password'),
+      username:username,
+      password:password
     });
+    if(username === ''){
+      console.log('Invalid or empty username.');
+    }else if(password === ''){
+      console.log('Invalid or empty password.');
+    }else{
+      console.log('SignIn submit button success',);
+      if(users[username] && users[username].password === password){
+        console.log('Component SignIn success Sign In');
+        new Promise((res, rej) => {
+          setTimeout(() => res(), 500);
+        }).then(() => {
+          props.dispatch(setAuthedUser(username));
+          localStorage.setItem('userLoggedIn', true);
+          navigate('/leaderboard');
+        });
+      }else{
+        console.log('Username or Password is invalid.');
+      }
+
+    }    
   };
 
   return (
@@ -44,7 +82,7 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required
@@ -61,9 +99,21 @@ export default function SignIn() {
               fullWidth
               name="password"
               label="Password"
-              type="password"
+              type={showPassword ? "text" : "password"}
               id="password"
               autoComplete="current-password"
+              InputProps={{ 
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                    >
+                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                )
+              }}
             />
             <FormControlLabel
               control={<Checkbox value="remember" color="primary" />}
@@ -79,7 +129,7 @@ export default function SignIn() {
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="/forgot-password" variant="body2">
                   Forgot password?
                 </Link>
               </Grid>
@@ -95,3 +145,13 @@ export default function SignIn() {
     </ThemeProvider>
   );
 }
+
+function mapStateToProps({ authedUser, users }) {
+  console.log('Component SignIn', users);
+  return {
+    authedUser,
+    users
+  };
+}
+
+export default connect(mapStateToProps)(SignIn);

@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Button, Typography } from '@mui/material';
 import React from 'react';
   
 const PageNotFound = () => {
@@ -12,13 +12,20 @@ const PageNotFound = () => {
       }}
     >
       <div>
-        <h1>404</h1>
-        <h2>UH OH! You're lost.</h2>
-        <p>The page you are looking for does not exist.
+      <Typography variant="h1" color="text.primary" align="center">
+        <strong>404</strong>
+      </Typography>
+      <Typography variant="h3" color="text.primary" align="center">
+        UH OH! You're lost.
+      </Typography>
+      <Typography variant="h6" color="text.primary" align="center">
+        The page you are looking for does not exist.
           How you got here is a mystery. But you can click the button below
-          to go back to the Sign In.
-        </p>
-        <Button variant="contained" color='primary' href='/sign-in'>Sign In</Button>
+          to Sign In.
+        </Typography>
+        <Typography variant="h3" color="text.primary" align="center">
+        <Button variant="contained" color='primary' align="center" href='/sign-in'>Sign In</Button>
+        </Typography>
       </div>
     </div>
   );
