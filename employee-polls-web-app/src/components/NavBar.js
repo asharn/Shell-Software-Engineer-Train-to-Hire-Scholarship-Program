@@ -1,4 +1,5 @@
 import React from 'react';
+import { connect } from "react-redux";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
@@ -10,6 +11,7 @@ import ButtonGroup from '@mui/material/ButtonGroup';
 import IconButton from '@mui/material/IconButton';
 import PollRounded from '@mui/icons-material/PollRounded';
 import createTheme from "@mui/material/styles/createTheme";
+import { Avatar } from '@mui/material';
 
 const theme = createTheme({
   typography: {
@@ -25,7 +27,8 @@ const NavButton = (props) => {
     )
 }
 
-const NavBar = () => {
+const NavBar = (props) => {
+    console.log('Component NavBar userLoggedIn', props.userLoggedIn);
     return(
         <div>
         <AppBar position="static">
@@ -56,14 +59,31 @@ const NavBar = () => {
                         <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
                         <NavButton text={'New'} href={'/add'}/>
                     </Stack>
-                    <Stack direction='row' spacing={2}>
-                        <NavButton text={'SignIn'} href={'/sign-in'}/>
-                        <NavButton text={'SignUp'} href={'/sign-up'}/>
-                    </Stack>
+                    {props.userLoggedIn===true? 
+                        <Stack direction='row' spacing={3}>
+                            <Stack direction='row' spacing={1} justifyContent="center" alignItems="center">
+                                <Avatar variant='circular' sx={{ width: 24, height: 24 }} src={props.users[props.authedUser].avatarURL}/>
+                                <Typography fontSize='14px'>{props.users[props.authedUser].name}</Typography>
+                            </Stack>
+                            <NavButton text={'SignOut'} href={'/sign-out'}/>
+                        </Stack>
+                    :
+                        <Stack direction='row' spacing={2}>
+                            <NavButton text={'SignIn'} href={'/sign-in'}/>
+                            <NavButton text={'SignUp'} href={'/sign-up'}/>
+                        </Stack>
+                    }
                 </Stack>
             </Toolbar>
         </AppBar>
         </div>
     )
 }
-export default NavBar;
+
+const mapStateToProps = ({ authedUser, users }) => ({
+    authedUser,
+    userLoggedIn: authedUser !== null,
+    users
+  });
+
+export default connect(mapStateToProps)(NavBar);

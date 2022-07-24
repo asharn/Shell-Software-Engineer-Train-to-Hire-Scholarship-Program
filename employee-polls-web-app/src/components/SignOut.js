@@ -1,18 +1,19 @@
 import React from 'react';
-  
-const SignOut = () => {
-  return (
-    <div
-      style={{
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '80vh'
-      }}
-    >
-      <h1>Please Sign Out</h1>
-    </div>
-  );
+import { useNavigate} from "react-router-dom";
+import { connect } from "react-redux";
+import { setAuthedUser } from '../actions/authedUser';
+
+
+
+const SignOut = (props) => {
+  const navigate = useNavigate();
+  React.useEffect(() => {
+    navigate('/sign-in');
+  }, []);
+  console.log('Component SignOut props', props);
+  props.dispatch(setAuthedUser(null));
+  localStorage.clear();
+  sessionStorage.clear();
 };
   
-export default SignOut;
+export default connect()(SignOut);

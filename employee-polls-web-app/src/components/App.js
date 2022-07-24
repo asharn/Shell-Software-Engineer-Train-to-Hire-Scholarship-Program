@@ -5,6 +5,7 @@ import { handleInitialData } from "../actions/shared";
 import LeaderBoard from "./LeaderBoard";
 import SignUp from "./SignUp";
 import SignIn from "./SignIn";
+import SignOut from "./SignOut";
 import Home from "./Home";
 import NewQuestion from "./NewQuestion";
 import { Routes, Route } from "react-router-dom";
@@ -12,9 +13,10 @@ import PageNotFound from './PageNotFound';
 import NotAuthorized from './NotAuthorized';
 import Copyright from './Copyright';
 import ForgotPassword from './ForgotPassword';
+import QuestionPage from './QuestionPage';
 
 const App = (props) => {
-  //const userLoggedIn = localStorage.getItem('userLoggedIn');
+  localStorage.clear();
    useEffect(() => {
     if(props.userLoggedIn===false){
       props.dispatch(handleInitialData());
@@ -22,7 +24,6 @@ const App = (props) => {
    }, []);
     console.log('Component App userLoggedIn', props.userLoggedIn);
     console.log('Component App props', props);
-    console.log('Component App localStorage userLoggedIn', localStorage.getItem('userLoggedIn'));
   return (
       <div className="container">
         <NavBar />
@@ -31,10 +32,12 @@ const App = (props) => {
             <Route path='/' exact element={<Home />} />
             <Route path='/leaderboard' element={<LeaderBoard />} />
             <Route path='/add' element={<NewQuestion/>} />
+            <Route path="/question/:id" element={<QuestionPage />} />
             <Route path='/sign-up' element={<Home/>} />
             <Route path='/sign-in' element={<Home/>} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
+            <Route path='/sign-out' element={<SignOut/>} />
           </Routes>
         ):
         (
@@ -42,6 +45,7 @@ const App = (props) => {
             <Route path='/sign-in' element={<SignIn/>} />
             <Route path='/sign-up' element={<SignUp/>} />
             <Route path='/leaderboard' element={<NotAuthorized />} />
+            <Route path='/sign-out' element={<SignIn/>} />
             <Route path='/add' element={<NotAuthorized/>} />
             <Route path='/' element={<NotAuthorized />} />
             <Route path="*" element={<PageNotFound />} />

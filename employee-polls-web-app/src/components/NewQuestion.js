@@ -44,7 +44,7 @@ export default function NewQuestion() {
           <Typography variant="h6">
             Would you rather...
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
               required

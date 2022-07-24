@@ -54,8 +54,7 @@ const SignIn = (props) => {
           setTimeout(() => res(), 500);
         }).then(() => {
           props.dispatch(setAuthedUser(username));
-          localStorage.setItem('userLoggedIn', true);
-          navigate('/leaderboard');
+          navigate('/');
         });
       }else{
         console.log('Username or Password is invalid.');
