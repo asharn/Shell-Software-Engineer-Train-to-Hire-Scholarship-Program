@@ -55,10 +55,16 @@ const NavBar = (props) => {
                     </Typography>
                 </Stack>
                     <Stack direction='row' spacing={1}>
-                        <NavButton text={'Home'} href={'/'}/>
-                        <NavButton text={'Dashboard'} href={'/dashboard'}/>
-                        <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
-                        <NavButton text={'New'} href={'/add'}/>
+                        {props.userLoggedIn===true ? 
+                        <Stack direction='row' spacing={1}>
+                            <NavButton text={'Home'} href={'/'}/>
+                            <NavButton text={'Dashboard'} href={'/dashboard'}/>
+                            <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
+                            <NavButton text={'New'} href={'/add'}/>
+                        </Stack>
+                        : 
+                            <NavButton text={'Home'} href={'/'}/>
+                        }
                     </Stack>
                     {props.userLoggedIn===true? 
                         <Stack direction='row' spacing={2}>

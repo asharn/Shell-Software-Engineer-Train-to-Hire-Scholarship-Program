@@ -1,17 +1,13 @@
 import { connect } from "react-redux";
-//import Question from "./Question";
-//import NewQuestion from "./NewQuestion";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import React from 'react';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
-import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
-import QuestionAnswerRounded from '@mui/icons-material/QuestionAnswerRounded';
 
   
 const theme = createTheme();
