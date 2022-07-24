@@ -14,7 +14,7 @@ const withRouter = (Component) => {
   return ComponentWithRouterProp;
 };
 
-const Home = () => {
+const DashBoard = () => {
   return (
     <div
       style={{
@@ -32,4 +32,4 @@ const Home = () => {
 const mapStateToProps = ({ authedUser }) => ({
   userLoggedIn: authedUser !== null,
 });
-export default withRouter(connect(mapStateToProps)(Home));
+export default withRouter(connect(mapStateToProps)(DashBoard));

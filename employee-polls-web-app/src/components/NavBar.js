@@ -33,7 +33,7 @@ const NavBar = (props) => {
         <div>
         <AppBar position="static">
             <Toolbar>
-                <Stack direction='row' spacing={{ xs: 3, sm: 6, md: 12 }} justifyContent="center" alignItems="center" divider={<Divider orientation="vertical" flexItem />}>
+                <Stack direction='row' spacing={{ xs: 3, sm: 6, md: 9 }} justifyContent="center" alignItems="center" divider={<Divider orientation="vertical" flexItem />}>
                 <Stack direction='row' justifyContent="center" alignItems="center">
                     <IconButton href="/" size='large' edge='start' color='inherit' aria-label='logo'>
                         <PollRounded/>
@@ -54,13 +54,14 @@ const NavBar = (props) => {
                     Employee Polls
                     </Typography>
                 </Stack>
-                    <Stack direction='row' spacing={2}>
+                    <Stack direction='row' spacing={1}>
                         <NavButton text={'Home'} href={'/'}/>
+                        <NavButton text={'Dashboard'} href={'/dashboard'}/>
                         <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
                         <NavButton text={'New'} href={'/add'}/>
                     </Stack>
                     {props.userLoggedIn===true? 
-                        <Stack direction='row' spacing={3}>
+                        <Stack direction='row' spacing={2}>
                             <Stack direction='row' spacing={1} justifyContent="center" alignItems="center">
                                 <Avatar variant='circular' sx={{ width: 24, height: 24 }} src={props.users[props.authedUser].avatarURL}/>
                                 <Typography fontSize='14px'>{props.users[props.authedUser].name}</Typography>

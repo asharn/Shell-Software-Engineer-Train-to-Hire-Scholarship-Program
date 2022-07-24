@@ -14,6 +14,7 @@ import NotAuthorized from './NotAuthorized';
 import Copyright from './Copyright';
 import ForgotPassword from './ForgotPassword';
 import QuestionPage from './QuestionPage';
+import DashBoard from './DashBoard';
 
 const App = (props) => {
   localStorage.clear();
@@ -30,6 +31,7 @@ const App = (props) => {
         {props.userLoggedIn ?  (
           <Routes>
             <Route path='/' exact element={<Home />} />
+            <Route path='/dashboard' element={<DashBoard />} />
             <Route path='/leaderboard' element={<LeaderBoard />} />
             <Route path='/add' element={<NewQuestion/>} />
             <Route path="/question/:id" element={<QuestionPage />} />
@@ -42,12 +44,12 @@ const App = (props) => {
         ):
         (
           <Routes>
+            <Route path='/' exact element={<Home />} />
             <Route path='/sign-in' element={<SignIn/>} />
             <Route path='/sign-up' element={<SignUp/>} />
             <Route path='/leaderboard' element={<NotAuthorized />} />
             <Route path='/sign-out' element={<SignIn/>} />
             <Route path='/add' element={<NotAuthorized/>} />
-            <Route path='/' element={<NotAuthorized />} />
             <Route path="*" element={<PageNotFound />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
           </Routes>

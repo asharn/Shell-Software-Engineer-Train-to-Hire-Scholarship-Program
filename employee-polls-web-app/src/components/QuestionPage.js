@@ -30,10 +30,28 @@ const withRouter = (Component) => {
 const QuestionPage = (props) => {
     const name = props.questions[props.id].author;
     const avatarURL = props.users[name].avatarURL;
-    let [flagFirstOption, flagSecondOption] = React.useState(true);
+    const [flagFirstOption, setFlagFirstOption] = React.useState(true);
+    const [flagSecondOption, setFlagSecondOption] = React.useState(true);
+
     const handleClick = (event) => {
         event.preventDefault();
-        event.currentTarget.id === 'firstOption' ? flagFirstOption = !flagFirstOption:flagSecondOption = !flagSecondOption;
+        if(event.currentTarget.id === 'firstOption')
+        {
+            if((flagFirstOption && flagSecondOption) || (!flagFirstOption && flagSecondOption)){
+                setFlagFirstOption(!flagFirstOption);
+            }else{
+                setFlagFirstOption(!flagFirstOption);
+                setFlagSecondOption(!flagSecondOption)
+            }
+
+        } else{
+            if((flagFirstOption && flagSecondOption)  || (flagFirstOption && !flagSecondOption)){
+                setFlagSecondOption(!flagSecondOption);
+            }else{
+                setFlagFirstOption(!flagFirstOption);
+                setFlagSecondOption(!flagSecondOption)
+            }
+        }
         console.log('Question Page clicked ', event.currentTarget.id);
       };
 
@@ -75,7 +93,7 @@ const QuestionPage = (props) => {
               variant="contained"
               onClick={handleClick} 
               id="firstOption"
-              color={flagFirstOption ? "primary" : "secondary"}
+              color={flagFirstOption ? "primary" : "success"}
             >
               Click
             </Button>
@@ -99,7 +117,7 @@ const QuestionPage = (props) => {
               variant="contained"
               onClick={handleClick} 
               id="secondOption"
-              color={flagSecondOption ? "primary" : "secondary"}
+              color={flagSecondOption ? "primary" : "success"}
             >
               Click
             </Button>
