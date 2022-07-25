@@ -26,6 +26,9 @@ const SignIn = (props) => {
   console.log('Component SignIn props', props);
 
   const [showPassword, setShowPassword] = React.useState(false);
+  const [success, setSuccess] = React.useState(false);
+  const [error, setError] = React.useState(false);
+
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const { users } = props;
   console.log('SignIn submit button clicked', users);
@@ -40,8 +43,12 @@ const SignIn = (props) => {
     });
     if(username === ''){
       console.log('Invalid or empty username.');
+      setSuccess(false);
+      setError(true);
     }else if(password === ''){
       console.log('Invalid or empty password.');
+      setSuccess(false);
+      setError(true);
     }else{
       console.log('SignIn submit button success',);
       if(users[username] && users[username].password === password){
@@ -50,10 +57,14 @@ const SignIn = (props) => {
           setTimeout(() => res(), 500);
         }).then(() => {
           props.dispatch(setAuthedUser(username));
+          setSuccess(true);
+          setError(false);
           navigate('/dashboard');
         });
       }else{
         console.log('Username or Password is invalid.');
+        setSuccess(false);
+        setError(true);
       }
 
     }    
@@ -77,6 +88,12 @@ const SignIn = (props) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          {success &&
+                <Typography color='success' className={"Success"} data-testid="success-header">Login Successfully!</Typography>
+            }
+            {error &&
+                <Typography color='error' className={"Error"} data-testid="error-header">Username or Password is invalid.</Typography>
+            }
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
               margin="normal"
