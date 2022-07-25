@@ -165,7 +165,6 @@ let users = {
       if (!question.optionOneText || !question.optionTwoText || !question.author) {
         reject("Please provide optionOneText, optionTwoText, and author");
       }
-      console.log("_saveQuestion method call");
       const authedUser = question.author;	
       const formattedQuestion = formatQuestion(question)
       setTimeout(() => {
@@ -187,7 +186,7 @@ let users = {
     })
   }
   
-  export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
+  export function _saveQuestionAnswer ( authedUser, qid, answer ) {
     return new Promise((resolve, reject) => {
       if (!authedUser || !qid || !answer) {
         reject("Please provide authedUser, qid, and answer");
