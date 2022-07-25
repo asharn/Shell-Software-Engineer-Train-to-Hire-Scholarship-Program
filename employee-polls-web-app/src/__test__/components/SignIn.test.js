@@ -67,17 +67,30 @@ describe('Verify username, password and submit button is present.', () => {
     });
     
   test('Veriy username field is there in the SignIn component.', () => {
-    
+    component = render(<Provider store={store}>
+                  <Router location={history.location} navigator={history}><SignIn /></Router>
+                </Provider>);
+        var username = component.getByTestId('username')
+        expect(username).toBeInTheDocument();
     
   });
 
   test('Veriy password field is there in the SignIn component.', () => {
     
+    component = render(<Provider store={store}>
+          <Router location={history.location} navigator={history}><SignIn /></Router>
+        </Provider>);
+        var password = component.getByTestId('password')
+        expect(password).toBeInTheDocument();
     
   });
 
   test('Veriy Sign In button is there in the SignIn component.', () => {
-    
+    component = render(<Provider store={store}>
+          <Router location={history.location} navigator={history}><SignIn /></Router>
+        </Provider>);
+        var signInButton = component.getByTestId('sign-in')
+        expect(signInButton).toBeInTheDocument();
     
   });
 

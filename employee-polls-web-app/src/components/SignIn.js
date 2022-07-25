@@ -83,6 +83,8 @@ const SignIn = (props) => {
               required
               fullWidth
               id="username"
+              data-testid="username
+              "
               label="Username"
               name="username"
               autoComplete="username"
@@ -96,6 +98,7 @@ const SignIn = (props) => {
               label="Password"
               type={showPassword ? "text" : "password"}
               id="password"
+              data-testid="password"
               autoComplete="current-password"
               InputProps={{ 
                 endAdornment: (
@@ -119,6 +122,7 @@ const SignIn = (props) => {
               fullWidth
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
+              data-testid='sign-in'
             >
               Sign In
             </Button>
