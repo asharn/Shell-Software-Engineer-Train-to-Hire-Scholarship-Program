@@ -24,8 +24,6 @@ const App = (props) => {
       props.dispatch(handleInitialData());
     }
    }, []);
-    console.log('Component App userLoggedIn', props.userLoggedIn);
-    console.log('Component App props', props);
   return (
       <div className="container">
         <NavBar />

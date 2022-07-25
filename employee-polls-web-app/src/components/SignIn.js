@@ -23,8 +23,6 @@ const theme = createTheme();
 
 const SignIn = (props) => {
   const navigate = useNavigate();
-  console.log('Component SignIn props', props);
-
   const [showPassword, setShowPassword] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -33,7 +31,6 @@ const SignIn = (props) => {
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const { users } = props;
-  console.log('SignIn submit button clicked', users);
 
   const handleUsernameChange = (e) => {
       setUsernameValue(e.target.value);
@@ -48,22 +45,15 @@ const SignIn = (props) => {
     const data = new FormData(event.currentTarget);
     const username = data.get('username');
     const password = data.get('password');
-    console.log({
-      username:username,
-      password:password
-    });
+    
     if(username === ''){
-      console.log('Invalid or empty username.');
       setSuccess(false);
       setError(true);
     }else if(password === ''){
-      console.log('Invalid or empty password.');
       setSuccess(false);
       setError(true);
     }else{
-      console.log('SignIn submit button success',);
       if(users[username] && users[username].password === password){
-        console.log('Component SignIn success Sign In');
         new Promise((res, rej) => {
           setTimeout(() => res(), 500);
         }).then(() => {
@@ -73,7 +63,6 @@ const SignIn = (props) => {
           navigate('/dashboard');
         });
       }else{
-        console.log('Username or Password is invalid.');
         setSuccess(false);
         setError(true);
       }
@@ -177,7 +166,6 @@ const SignIn = (props) => {
 }
 
 function mapStateToProps({ authedUser, users }) {
-  console.log('Component SignIn', users);
   return {
     authedUser,
     users

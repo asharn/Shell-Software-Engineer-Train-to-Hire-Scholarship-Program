@@ -23,7 +23,6 @@ function addAnswerToUser(authedUser, qid, answer) {
 
 export function handleSaveQuestionAnswer(authedUser, qid, answer) {
   return dispatch => {
-    console.log({authedUser, qid, answer});
     dispatch(addAnswerToUser(authedUser, qid, answer));
     dispatch(addAnswerToQuestion(authedUser, qid, answer));
 

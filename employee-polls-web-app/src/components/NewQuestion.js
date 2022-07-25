@@ -23,17 +23,12 @@ const theme = createTheme();
     const data = new FormData(event.currentTarget);
     const optionOne = data.get('optionOne');
     const optionTwo = data.get('optionTwo');
-    console.log({
-      optionOne: optionOne,
-      optionTwo: optionTwo
-    });
     if(optionOne.trim()===''){
       console.error('First option is empty.');
     }else if(optionTwo.trim()===''){
       console.error('First option is empty.');
     }else{
       new Promise((res, rej) => {
-        console.log({optionOne, optionTwo, authedUser : props.authedUser})
         props.dispatch(handleSaveQuestion(optionOne, optionTwo, props.authedUser));
         setTimeout(() => res('success'), 1000);
       }).then(() => {

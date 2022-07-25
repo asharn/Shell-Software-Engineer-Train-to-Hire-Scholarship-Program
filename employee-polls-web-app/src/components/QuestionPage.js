@@ -32,7 +32,6 @@ const withRouter = (Component) => {
 };
 
 const QuestionPage = (props) => {
-  let navigate = useNavigate();
   let location = useLocation();
   const [flagSecondOption, setFlagSecondOption] = React.useState(true);
   const [flagFirstOption, setFlagFirstOption] = React.useState(true);
@@ -77,6 +76,7 @@ const QuestionPage = (props) => {
 
     const autherId = props.questions[props.id].author;
     const avatarURL = props.users[autherId].avatarURL;
+    const name = props.users[autherId].name;
     const optionOne = props.questions[props.id].optionOne.text;
     const optionTwo = props.questions[props.id].optionTwo.text;
 
@@ -85,7 +85,6 @@ const QuestionPage = (props) => {
 
     const handleClick = (event) => {
         event.preventDefault();
-        console.log('Question Page clicked ', event.currentTarget.id);
         if(voted === false){
           setVoted(!voted);
           setTotalVotes(totalVotes + 1);
@@ -95,7 +94,6 @@ const QuestionPage = (props) => {
           } else{
             setFlagSecondOption(!flagSecondOption)
           }
-          console.log({authedUser: props.authedUser, qid: props.id, option: event.currentTarget.id} );
           props.dispatch(handleSaveQuestionAnswer(props.authedUser, props.id, event.currentTarget.id));
         }
       };
@@ -114,7 +112,7 @@ const QuestionPage = (props) => {
           }}
         >
             <Typography variant="h3">
-            Poll By {autherId}:
+            Poll By {name}:
           </Typography>
           <Avatar variant='circular' sx={{ width: 140, height: 140 }} src={avatarURL}/>
           <Typography variant="h4">
@@ -177,8 +175,6 @@ const QuestionPage = (props) => {
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { id } = props.router.params;
-  console.log('QuestionPage component id : ', id);
-  
   return {
     id,
     questions,

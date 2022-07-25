@@ -30,7 +30,6 @@ export function addQuestion(question) {
 
 export function handleSaveQuestion(optionOneText, optionTwoText, author) {
   return dispatch => {
-    console.log({ optionOneText, optionTwoText, author });
     return saveQuestion({ optionOneText, optionTwoText, author }).then(
       question => {
         dispatch(addQuestion(question));

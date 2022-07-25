@@ -37,7 +37,6 @@ const QuestionDashBoard = (props) => {
 
     const handleClick = (event, qid) => {
         event.preventDefault();
-        console.log("DashBoard component for question Id", qid);
         if(qid.trim()!==''){
             navigate('/question/'+qid);
         }
