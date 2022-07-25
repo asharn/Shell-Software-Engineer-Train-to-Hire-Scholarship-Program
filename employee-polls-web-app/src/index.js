@@ -5,7 +5,7 @@ import App from "./components/App";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router } from "react-router-dom";
 import { PersistGate } from 'redux-persist/integration/react'
-import storage from './configureStore'
+import storage from './store.config'
 
 ReactDOM.render(
   <Provider store={storage.store}>

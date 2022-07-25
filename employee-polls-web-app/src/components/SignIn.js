@@ -22,8 +22,6 @@ import { useNavigate} from "react-router-dom";
 const theme = createTheme();
 
 const SignIn = (props) => {
-  React.useEffect(() => {
-  }, []);
   const navigate = useNavigate();
   console.log('Component SignIn props', props);
 

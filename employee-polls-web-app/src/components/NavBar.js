@@ -5,12 +5,10 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
-
 import Divider from '@mui/material/Divider';
-import ButtonGroup from '@mui/material/ButtonGroup';
 import IconButton from '@mui/material/IconButton';
 import PollRounded from '@mui/icons-material/PollRounded';
-import createTheme from "@mui/material/styles/createTheme";
+import {createTheme} from "@mui/material/styles";
 import { Avatar } from '@mui/material';
 
 const theme = createTheme({
@@ -56,7 +54,7 @@ const NavBar = (props) => {
                 </Stack>
                     <Stack direction='row' spacing={1}>
                         {props.userLoggedIn===true ? 
-                        <Stack direction='row' spacing={1}>
+                        <Stack direction='row' spacing={2}>
                             <NavButton text={'Home'} href={'/'}/>
                             <NavButton text={'Dashboard'} href={'/dashboard'}/>
                             <NavButton text={'Leaderboard'} href={'/leaderboard'}/>

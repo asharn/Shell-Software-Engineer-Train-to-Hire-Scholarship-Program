@@ -8,7 +8,7 @@ const Home = () => {
         display: 'grid',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '80vh',
+        height: '75vh',
         direction: 'column'
       }}
     >
