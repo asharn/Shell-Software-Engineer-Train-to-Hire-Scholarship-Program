@@ -8,7 +8,7 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
 import QuestionAnswerRounded from '@mui/icons-material/QuestionAnswerRounded';
-import { handleAddQuestion } from '../actions/questions';
+import { handleSaveQuestion } from '../actions/questions';
 import { useNavigate} from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -33,7 +33,7 @@ const theme = createTheme();
       console.error('First option is empty.');
     }else{
       new Promise((res, rej) => {
-        handleAddQuestion(firstOption, secondOption);
+        handleSaveQuestion(firstOption, secondOption, props.authedUser);
         setTimeout(() => res('success'), 1000);
       }).then(() => {
         navigate('/dashboard');

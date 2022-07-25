@@ -8,7 +8,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
-import { handleSaveQuestionAnswerToUser } from '../actions/users';
+import { handleSaveQuestionAnswer } from '../actions/users';
 
 
   
@@ -73,8 +73,8 @@ const QuestionPage = (props) => {
           } else{
             setFlagSecondOption(!flagSecondOption)
           }
-          console.log('handleClink in QuestionPage', event.currentTarget.id );
-          handleSaveQuestionAnswerToUser(props.id, event.currentTarget.id);
+          console.log({authedUser: props.authedUser, qid: props.id, option: event.currentTarget.id} );
+          handleSaveQuestionAnswer(props.authedUser, props.id, event.currentTarget.id);
         }
       };
 

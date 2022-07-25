@@ -1,4 +1,5 @@
 import { saveQuestionAnswer } from '../utils/api';
+import { addAnswerToQuestion } from '../actions/questions';
 
 export const RECEIVE_USERS = 'RECEIVE_USERS';
 export const ADD_ANSWER_TO_USER = 'ADD_ANSWER_TO_USER';
@@ -11,30 +12,31 @@ export function receiveUsers(users) {
   };
 }
 
-export function addQuestionToUser({ id }) {
-  return {
-    type: ADD_QUESTION_TO_USER,
-    id
-  };
-}
-
-function addAnswerToUser(qid, answer) {
+function addAnswerToUser(authedUser, qid, answer) {
   return {
     type: ADD_ANSWER_TO_USER,
+    authedUser,
     qid,
     answer
   };
 }
 
-
-export function handleSaveQuestionAnswerToUser(qid, answer) {
+export function handleSaveQuestionAnswer(authedUser, qid, answer) {
   return dispatch => {
-    dispatch(addQuestionToUser(qid));
-    dispatch(addAnswerToUser(qid, answer));
+    console.log({authedUser, qid, answer});
+    dispatch(addAnswerToUser(authedUser, qid, answer));
+    dispatch(addAnswerToQuestion(authedUser, qid, answer));
 
-    return saveQuestionAnswer(qid, answer).catch(e => {
-      console.error('Error while saving handleSaveQuestionAnswer:', e);
+    return saveQuestionAnswer(authedUser, qid, answer).catch(e => {
+      console.warn('Error in handleSaveQuestionAnswer:', e);
     });
   };
 }
 
+export function addQuestionToUser({ id, author }) {
+  return {
+    type: ADD_QUESTION_TO_USER,
+    id,
+    author
+  };
+}
