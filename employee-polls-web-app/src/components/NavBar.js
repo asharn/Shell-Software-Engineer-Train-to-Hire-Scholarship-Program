@@ -16,7 +16,11 @@ const theme = createTheme({
     button: {
       textTransform: "none"
     }
-  }
+  },
+  ':hover': {
+      bgcolor: 'primary.main', // theme.palette.primary.main
+      color: 'white',
+    },
 });
 
 const NavButton = (props) => {
@@ -26,7 +30,6 @@ const NavButton = (props) => {
 }
 
 const NavBar = (props) => {
-    console.log('Component NavBar userLoggedIn', props.userLoggedIn);
     return(
         <div>
         <AppBar position="static">
