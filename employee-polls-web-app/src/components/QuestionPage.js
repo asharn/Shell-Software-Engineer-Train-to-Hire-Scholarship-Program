@@ -74,7 +74,7 @@ const QuestionPage = (props) => {
             setFlagSecondOption(!flagSecondOption)
           }
           console.log({authedUser: props.authedUser, qid: props.id, option: event.currentTarget.id} );
-          handleSaveQuestionAnswer(props.authedUser, props.id, event.currentTarget.id);
+          props.dispatch(handleSaveQuestionAnswer(props.authedUser, props.id, event.currentTarget.id));
         }
       };
 

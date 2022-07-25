@@ -6,9 +6,9 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { Avatar } from '@mui/material';
+import { Avatar, useThemeProps } from '@mui/material';
 import QuestionAnswerRounded from '@mui/icons-material/QuestionAnswerRounded';
-import { handleSaveQuestion } from '../actions/questions';
+import { handleSaveQuestion, addQuestion } from '../actions/questions';
 import { useNavigate} from "react-router-dom";
 import { connect } from 'react-redux';
 
@@ -34,7 +34,7 @@ const theme = createTheme();
     }else{
       new Promise((res, rej) => {
         console.log({optionOne, optionTwo, authedUser : props.authedUser})
-        handleSaveQuestion(optionOne, optionTwo, props.authedUser);
+        props.dispatch(handleSaveQuestion(optionOne, optionTwo, props.authedUser));
         setTimeout(() => res('success'), 1000);
       }).then(() => {
         navigate('/dashboard');

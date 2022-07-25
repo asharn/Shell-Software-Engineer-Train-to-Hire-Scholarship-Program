@@ -21,7 +21,7 @@ export function addAnswerToQuestion(authedUser, qid, answer) {
   };
 }
 
-function addQuestion(question) {
+export function addQuestion(question) {
   return {
     type: ADD_QUESTION,
     question
