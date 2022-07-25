@@ -8,15 +8,23 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
+import { handleSaveQuestionAnswerToUser } from '../actions/users';
+
 
   
-const theme = createTheme();
+const theme = createTheme({
+  typography: {
+    button: {
+      textTransform: "none"
+    }
+  }
+});
 
 const withRouter = (Component) => {
   const ComponentWithRouterProp = (props) => {
+    let params = useParams();
     let location = useLocation();
     let navigate = useNavigate();
-    let params = useParams();
     return <Component {...props} router={{ location, navigate, params }} />;
   };
 
@@ -24,31 +32,50 @@ const withRouter = (Component) => {
 };
 
 const QuestionPage = (props) => {
-    const name = props.questions[props.id].author;
-    const avatarURL = props.users[name].avatarURL;
-    const [flagFirstOption, setFlagFirstOption] = React.useState(true);
     const [flagSecondOption, setFlagSecondOption] = React.useState(true);
+    const [flagFirstOption, setFlagFirstOption] = React.useState(true);
+    const [voted, setVoted] = React.useState(false);
+    const [totalVotes, setTotalVotes] = React.useState(0);
+    const [optionOneVotesCount, setOptionOneVotesCount] = React.useState(0);
+
+
+
+    const autherId = props.questions[props.id].author;
+    const avatarURL = props.users[autherId].avatarURL;
+    const optionOne = props.questions[props.id].optionOne.text;
+    const optionTwo = props.questions[props.id].optionTwo.text;
+    React.useEffect(() => {
+      const optionOneVotes = props.questions[props.id].optionOne.votes;
+      const optionTwoVotes = props.questions[props.id].optionTwo.votes;
+      setTotalVotes(optionOneVotes.length+optionTwoVotes.length);
+      setOptionOneVotesCount(optionOneVotes.length);
+      if(optionOneVotes.includes(props.authedUser)){
+        setFlagFirstOption(!flagFirstOption);
+        setVoted(true);
+      } 
+
+      if(optionTwoVotes.includes(props.authedUser)){
+        setFlagSecondOption(!flagSecondOption);
+        setVoted(true);
+      }
+
+    }, []);
 
     const handleClick = (event) => {
         event.preventDefault();
-        if(event.currentTarget.id === 'firstOption')
-        {
-            if((flagFirstOption && flagSecondOption) || (!flagFirstOption && flagSecondOption)){
-                setFlagFirstOption(!flagFirstOption);
-            }else{
-                setFlagFirstOption(!flagFirstOption);
-                setFlagSecondOption(!flagSecondOption)
-            }
-
-        } else{
-            if((flagFirstOption && flagSecondOption)  || (flagFirstOption && !flagSecondOption)){
-                setFlagSecondOption(!flagSecondOption);
-            }else{
-                setFlagFirstOption(!flagFirstOption);
-                setFlagSecondOption(!flagSecondOption)
-            }
-        }
         console.log('Question Page clicked ', event.currentTarget.id);
+        if(voted === false){
+          setVoted(!voted);
+          setTotalVotes(totalVotes + 1);
+          if(event.currentTarget.id === 'optionOne'){
+            setFlagFirstOption(!flagFirstOption);
+            setOptionOneVotesCount(optionOneVotesCount+1);
+          } else{
+            setFlagSecondOption(!flagSecondOption)
+          }
+          console.log('handleClink in QuestionPage', event.currentTarget.id );
+          handleSaveQuestionAnswerToUser(props.id, event.currentTarget.id);
+        }
       };
 
 
@@ -65,14 +92,14 @@ const QuestionPage = (props) => {
           }}
         >
             <Typography variant="h3">
-            Poll By {name}:
+            Poll By {autherId}:
           </Typography>
           <Avatar variant='circular' sx={{ width: 140, height: 140 }} src={avatarURL}/>
           <Typography variant="h4">
             Would you rather...
           </Typography>
           <Box component="form"  sx={{marginTop: 2, display: 'flex', flexDirection: 'row',}}>
-            <Box border={1} sx={{ m: 0.5, display: 'flex', flexDirection: 'column',}}>
+            <Box border={1} sx={{ m: 0.5, verticalAlign: 'bottom', display: 'flex', flexDirection: 'column',}}>
             <Typography
                 gutterBottom
                 component="h2"
@@ -81,17 +108,17 @@ const QuestionPage = (props) => {
                 maxWidth='420px'
                 align='center'
                 style={{ wordWrap: "break-word" }}
-            >Read and learn Pyhton</Typography>
+            >{optionOne}</Typography>
             <Button
               style={{marginTop: 'auto', position: 'relative'}}
-              type="submit"
+              type="button"
               fullWidth
-              variant="contained"
+              variant={flagFirstOption ? "outlined" : "contained"}
               onClick={handleClick} 
-              id="firstOption"
+              id="optionOne"
               color={flagFirstOption ? "primary" : "success"}
             >
-              Click
+              {voted?<span>- {Math.round((optionOneVotesCount / totalVotes)*100).toFixed(2)}% Votes -</span>:<span>- Click Option One -</span>}
             </Button>
             </Box>
 
@@ -105,17 +132,18 @@ const QuestionPage = (props) => {
               id="secondOptionText"
               align='center'
               style={{ wordWrap: "break-word" }}
-            >Read and learn Java</Typography>
+            >{optionTwo}</Typography>
             <Button
               style={{marginTop: 'auto', position: 'relative'}}
-              type="submit"
+              type="button"
               fullWidth
-              variant="contained"
+              variant={flagSecondOption ? "outlined" : "contained"}
               onClick={handleClick} 
-              id="secondOption"
+              id="optionTwo"
               color={flagSecondOption ? "primary" : "success"}
             >
-              Click
+              {voted?<span>- {Math.round(((totalVotes - optionOneVotesCount)/ totalVotes)*100).toFixed(2)}% Votes -</span>:<span>- Click Option Two -</span>}
+              
             </Button>
             </Box>
           </Box>
@@ -127,11 +155,13 @@ const QuestionPage = (props) => {
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { id } = props.router.params;
-
+  console.log('QuestionPage component id : ', id);
+  
   return {
     id,
     questions,
-    users
+    users,
+    authedUser,
   };
 };
 

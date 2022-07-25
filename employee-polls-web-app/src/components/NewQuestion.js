@@ -8,18 +8,39 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
 import QuestionAnswerRounded from '@mui/icons-material/QuestionAnswerRounded';
+import { handleAddQuestion } from '../actions/questions';
+import { useNavigate} from "react-router-dom";
+import { connect } from 'react-redux';
 
-  
+
 const theme = createTheme();
 
-export default function NewQuestion() {
+  const NewQuestion = (props) => {
+
+  const navigate = useNavigate();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
+    const firstOption = data.get('firstOption');
+    const secondOption = data.get('secondOption');
     console.log({
-      firstOption: data.get('firstOption'),
-      secondOption: data.get('secondOption'),
+      firstOption: firstOption,
+      secondOption: secondOption
     });
+    if(firstOption.trim()===''){
+      console.error('First option is empty.');
+    }else if(secondOption.trim()===''){
+      console.error('First option is empty.');
+    }else{
+      new Promise((res, rej) => {
+        handleAddQuestion(firstOption, secondOption);
+        setTimeout(() => res('success'), 1000);
+      }).then(() => {
+        navigate('/dashboard');
+      });
+    }
+
+
   };
 
   return (
@@ -77,4 +98,13 @@ export default function NewQuestion() {
       </Container>
     </ThemeProvider>
   );
+};
+
+const mapStateToProps = ({ authedUser, users  }) => {
+  return {
+    authedUser,
+    users
+  };
 }
+
+export default connect(mapStateToProps)(NewQuestion);

@@ -19,8 +19,6 @@ import { connect } from 'react-redux';
 import { IconButton, InputAdornment } from '@mui/material';
 import { useNavigate} from "react-router-dom";
 
-
-
 const theme = createTheme();
 
 const SignIn = (props) => {
@@ -54,7 +52,7 @@ const SignIn = (props) => {
           setTimeout(() => res(), 500);
         }).then(() => {
           props.dispatch(setAuthedUser(username));
-          navigate('/');
+          navigate('/dashboard');
         });
       }else{
         console.log('Username or Password is invalid.');

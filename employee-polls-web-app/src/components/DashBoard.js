@@ -23,8 +23,8 @@ const withRouter = (Component) => {
 
 const useStyles = makeStyles(theme => ({
     card: {
-      maxWidth: 200,
-      minWidth: 200,
+      maxWidth: 300,
+      minWidth: 250,
       margin: "auto",
       transition: "0.3s",
       boxShadow: "0 8px 40px -12px rgba(0,0,0,0.6)",
@@ -42,12 +42,17 @@ const useStyles = makeStyles(theme => ({
   }));  
 
 const QuestionDashBoard = (props) => {
-    
+    const navigate = useNavigate();
     const classes = useStyles();
-    const handleClick = (event) => {
-        event.preventDefault();
-    }
     const questions = props.questions;
+
+    const handleClick = (event, qid) => {
+        event.preventDefault();
+        console.log("DashBoard component for question Id", qid);
+        if(qid.trim()!==''){
+            navigate('/question/'+qid);
+        }
+    };
 
     return (
       <Container component="main" maxWidth="md" >
@@ -98,11 +103,11 @@ const QuestionDashBoard = (props) => {
 
                     >  
                     <Grid container spacing={1}>
-                    {   questions.map((question, index) => {
-                        const { id, name, avatarURL, date } = question;
+                    {   questions.map((question) => {
+                        const { id, name, avatarURL, date, qid } = question;
                         return (
-                        <Grid item>
-                            <Card key={index} className={classes.card}>
+                        <Grid item key={qid}>
+                            <Card key={qid} className={classes.card}>
                                 <CardContent className={classes.content}>
                                     <Box
                                             border='1px solid'
@@ -127,26 +132,26 @@ const QuestionDashBoard = (props) => {
                                                 <Stack
                                                     direction="column"
                                                     justifyContent="center"
-                                                    alignItems="right"
+                                                    alignItems="flex-start"
                                                     spacing={-1}>
                                                     <Typography>{ name }</Typography>
                                                     <Typography>{ id }</Typography>
                                                 </Stack>
                                             </Box>
-                                            <Typography variant="subtitle2">{ date }</Typography>
+                                            <Typography variant="subtitle2">{ new Intl.DateTimeFormat('en-US', {year: 'numeric', month: '2-digit',day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit'}).format(date) }</Typography>
                                         </Box>
                                         <Box
                                             border='1px solid'
                                             padding='3px'
-                                            margin='1px'
+                                            marginTop='1px'
                                         >
                                             <Button
                                                 variant="contained"
                                                 color="primary"
                                                 fullWidth
                                                 sx={{ mt: 0.5, mb: 0.5 }}
-                                                onClick={() => {
-                                                    handleClick();
+                                                onClick={(e) => {
+                                                    handleClick(e, qid)
                                                 }}
                                             >
                                                 Show
@@ -184,15 +189,16 @@ const DashBoard = (props) => {
       qid: question.id,
       id: question.author,
       avatarURL: users[question.author].avatarURL,
+      name: users[question.author].name,
       date: question.timestamp
     }))
     .sort((a, b) => a.date - b.date);
 
     const newQuestions = allQuestions
-    .filter(question => answeredQuestionIds.includes(question.qid));
+    .filter(question => !answeredQuestionIds.includes(question.qid));
 
     const answeredQuestions = allQuestions
-    .filter(question => !answeredQuestionIds.includes(question.qid));
+    .filter(question => answeredQuestionIds.includes(question.qid));
     
     return {
         questionsData: {
