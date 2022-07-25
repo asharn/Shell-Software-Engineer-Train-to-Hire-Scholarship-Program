@@ -61,6 +61,7 @@ const App = (props) => {
 };
 
 const mapStateToProps = ({ authedUser }) => ({
+  authedUser,
   userLoggedIn: authedUser !== null,
 });
 export default connect(mapStateToProps)(App);

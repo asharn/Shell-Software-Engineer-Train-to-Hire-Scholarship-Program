@@ -30,6 +30,7 @@ const Home = () => {
 };
   
 const mapStateToProps = ({ authedUser }) => ({
+  authedUser,
   userLoggedIn: authedUser !== null,
 });
 export default withRouter(connect(mapStateToProps)(Home));

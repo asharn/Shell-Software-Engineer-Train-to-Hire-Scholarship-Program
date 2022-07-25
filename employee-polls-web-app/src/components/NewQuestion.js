@@ -21,19 +21,20 @@ const theme = createTheme();
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    const firstOption = data.get('firstOption');
-    const secondOption = data.get('secondOption');
+    const optionOne = data.get('optionOne');
+    const optionTwo = data.get('optionTwo');
     console.log({
-      firstOption: firstOption,
-      secondOption: secondOption
+      optionOne: optionOne,
+      optionTwo: optionTwo
     });
-    if(firstOption.trim()===''){
+    if(optionOne.trim()===''){
       console.error('First option is empty.');
-    }else if(secondOption.trim()===''){
+    }else if(optionTwo.trim()===''){
       console.error('First option is empty.');
     }else{
       new Promise((res, rej) => {
-        handleSaveQuestion(firstOption, secondOption, props.authedUser);
+        console.log({optionOne, optionTwo, authedUser : props.authedUser})
+        handleSaveQuestion(optionOne, optionTwo, props.authedUser);
         setTimeout(() => res('success'), 1000);
       }).then(() => {
         navigate('/dashboard');
@@ -70,20 +71,20 @@ const theme = createTheme();
               margin="normal"
               required
               fullWidth
-              id="firstOption"
+              id="optionOne"
               label="First Option"
-              name="firstOption"
-              autoComplete="firstOption"
+              name="optionOne"
+              autoComplete="optionOne"
               autoFocus
             />
             <TextField
               margin="normal"
               required
               fullWidth
-              name="secondOption"
+              name="optionTwo"
               label="Second Option"
-              type="secondOption"
-              id="secondOption"
+              type="optionTwo"
+              id="optionTwo"
             />
             <Button
               type="submit"
