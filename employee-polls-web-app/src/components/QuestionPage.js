@@ -32,19 +32,17 @@ const withRouter = (Component) => {
 };
 
 const QuestionPage = (props) => {
-    const [flagSecondOption, setFlagSecondOption] = React.useState(true);
-    const [flagFirstOption, setFlagFirstOption] = React.useState(true);
-    const [voted, setVoted] = React.useState(false);
-    const [totalVotes, setTotalVotes] = React.useState(0);
-    const [optionOneVotesCount, setOptionOneVotesCount] = React.useState(0);
+  let navigate = useNavigate();
+  let location = useLocation();
+  const [flagSecondOption, setFlagSecondOption] = React.useState(true);
+  const [flagFirstOption, setFlagFirstOption] = React.useState(true);
+  const [voted, setVoted] = React.useState(false);
+  const [totalVotes, setTotalVotes] = React.useState(0);
+  const [optionOneVotesCount, setOptionOneVotesCount] = React.useState(0);
 
-
-
-    const autherId = props.questions[props.id].author;
-    const avatarURL = props.users[autherId].avatarURL;
-    const optionOne = props.questions[props.id].optionOne.text;
-    const optionTwo = props.questions[props.id].optionTwo.text;
-    React.useEffect(() => {
+  React.useEffect(() => {
+    if(props.questions[props.id]){
+        
       const optionOneVotes = props.questions[props.id].optionOne.votes;
       const optionTwoVotes = props.questions[props.id].optionTwo.votes;
       setTotalVotes(optionOneVotes.length+optionTwoVotes.length);
@@ -58,8 +56,32 @@ const QuestionPage = (props) => {
         setFlagSecondOption(!flagSecondOption);
         setVoted(true);
       }
+  }
 
     }, []);
+
+    if(!props.questions[props.id]){
+      return (
+        <div style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                  height: '80vh'
+                }}>
+          <h3>
+            No match for <code>{location.pathname}</code>
+          </h3>
+        </div>
+      );
+    }
+
+    const autherId = props.questions[props.id].author;
+    const avatarURL = props.users[autherId].avatarURL;
+    const optionOne = props.questions[props.id].optionOne.text;
+    const optionTwo = props.questions[props.id].optionTwo.text;
+
+
+  
 
     const handleClick = (event) => {
         event.preventDefault();

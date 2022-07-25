@@ -5,13 +5,15 @@ const Home = () => {
   return (
     <div
       style={{
-        display: 'flex',
+        display: 'grid',
         justifyContent: 'center',
         alignItems: 'center',
-        height: '80vh'
+        height: '80vh',
+        direction: 'column'
       }}
     >
-      <h1>Welcome to Home page of Employee Polls. This is public page, so no need to sign in, anycan visit.</h1>
+      <h1>Welcome to Home page of Employee Polls. </h1>
+      <h2>This is public page, so no need to sign in. Anycan can visit.</h2>
     </div>
   );
 };
