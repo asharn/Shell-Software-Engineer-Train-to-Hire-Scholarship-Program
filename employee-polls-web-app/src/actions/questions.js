@@ -28,9 +28,10 @@ function addQuestion(question) {
   };
 }
 
-export function handleSaveQuestion(optionOne, optionTwo, author) {
+export function handleSaveQuestion(optionOneText, optionTwoText, author) {
   return dispatch => {
-    return saveQuestion({ optionOne, optionTwo, author }).then(
+    console.log({ optionOneText, optionTwoText, author });
+    return saveQuestion({ optionOneText, optionTwoText, author }).then(
       question => {
         dispatch(addQuestion(question));
         dispatch(addQuestionToUser(question));

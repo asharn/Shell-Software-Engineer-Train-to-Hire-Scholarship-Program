@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
 import Card from "@mui/material/Card";
 import { makeStyles } from "@mui/styles";
@@ -10,17 +10,6 @@ import Button from "@mui/material/Button";
 import { Box, Container, CssBaseline, Grid, ThemeProvider, createTheme, Stack } from "@mui/material";
 
   
-const withRouter = (Component) => {
-  const ComponentWithRouterProp = (props) => {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return <Component {...props} router={{ location, navigate, params }} />;
-  };
-
-  return ComponentWithRouterProp;
-};
-
 const useStyles = makeStyles(theme => ({
     card: {
       maxWidth: 300,
@@ -208,4 +197,4 @@ const DashBoard = (props) => {
     };
 };
 
-export default withRouter(connect(mapStateToProps)(DashBoard));
+export default connect(mapStateToProps)(DashBoard);

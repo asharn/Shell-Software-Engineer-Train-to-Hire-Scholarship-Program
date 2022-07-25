@@ -165,13 +165,22 @@ let users = {
       if (!question.optionOneText || !question.optionTwoText || !question.author) {
         reject("Please provide optionOneText, optionTwoText, and author");
       }
-  
+      console.log("_saveQuestion method call");
+      const authedUser = question.author;	
       const formattedQuestion = formatQuestion(question)
       setTimeout(() => {
         questions = {
           ...questions,
           [formattedQuestion.id]: formattedQuestion
         }
+
+        users = {	
+          ...users,	
+          [authedUser]: {	
+              ...users[authedUser],	
+              questions: users[authedUser].questions.concat([formattedQuestion.id])	
+          }	
+      }
   
         resolve(formattedQuestion)
       }, 1000)
