@@ -118,14 +118,22 @@ describe('Verify error message when username or password are not present on sig 
       );
     });
     
-  test('Veriy username field is empty then there should be error message in the SignIn component.', () => {
+    test('Veriy username field and password are empty then there should be error message in the SignIn component.', () => {
+      component = render(<Provider store={store}>
+                    <Router location={history.location} navigator={history}><SignIn /></Router>
+                  </Provider>);
+          var signInButton = component.getByTestId('sign-in');
+          fireEvent.click(signInButton);
+          expect(component.getByTestId('error-header')).toBeInTheDocument();
+          expect(component.queryByTestId('success-header')).not.toBeInTheDocument();
+      
+    });
+  
+    test('Veriy username field is empty then there should be error message in the SignIn component.', () => {
     component = render(<Provider store={store}>
                   <Router location={history.location} navigator={history}><SignIn /></Router>
                 </Provider>);
-
-        var username = component.getByTestId('username');
-        fireEvent.change(username, { target: { value: '' } });
-        var password = component.getByTestId('password');
+        var password = component.getByTestId('password').querySelector('input');
         fireEvent.change(password, { target: { value: '123456' } });
         var signInButton = component.getByTestId('sign-in');
         fireEvent.click(signInButton);
@@ -139,10 +147,8 @@ describe('Verify error message when username or password are not present on sig 
     component = render(<Provider store={store}>
           <Router location={history.location} navigator={history}><SignIn /></Router>
         </Provider>);
-        var username = component.getByTestId('username');
+        var username = component.getByTestId('username').querySelector('input');
         fireEvent.change(username, { target: { value: 'ashish' } });
-        var password = component.getByTestId('password');
-        fireEvent.change(password, { target: { value: '' } });
         var signInButton = component.getByTestId('sign-in');
         fireEvent.click(signInButton);
         expect(component.getByTestId('error-header')).toBeInTheDocument();
@@ -154,9 +160,9 @@ describe('Verify error message when username or password are not present on sig 
     component = render(<Provider store={store}>
           <Router location={history.location} navigator={history}><SignIn /></Router>
         </Provider>);
-        var username = component.getByTestId('username');
+        var username = component.getByTestId('username').querySelector('input');
         fireEvent.change(username, { target: { value: 'ashish' } });
-        var password = component.getByTestId('password');
+        var password = component.getByTestId('password').querySelector('input');
         fireEvent.change(password, { target: { value: '123456' } });
         var signInButton = component.getByTestId('sign-in');
         fireEvent.click(signInButton);
@@ -169,14 +175,14 @@ describe('Verify error message when username or password are not present on sig 
     component = render(<Provider store={store}>
           <Router location={history.location} navigator={history}><SignIn /></Router>
         </Provider>);
-        var username = component.getByTestId('username');
+        var username = component.getByTestId('username').querySelector('input');
         fireEvent.change(username, { target: { value: 'test-user-id' } });
-        var password = component.getByTestId('password');
+        var password = component.getByTestId('password').querySelector('input');
         fireEvent.change(password, { target: { value: 'test-pass' } });
         var signInButton = component.getByTestId('sign-in');
         fireEvent.click(signInButton);
-        expect(component.getByTestId('error-header')).not.toBeInTheDocument();
-        expect(component.queryByTestId('success-header')).toBeInTheDocument();
+        expect(component.getByTestId('error-header')).toBeInTheDocument();
+        expect(component.queryByTestId('success-header')).not.toBeInTheDocument();
     
   });
 

@@ -28,10 +28,21 @@ const SignIn = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
+  const [usernameValue, setUsernameValue] = React.useState(null);
+  const [passwordValue, setPasswordValue] = React.useState(null);
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const { users } = props;
   console.log('SignIn submit button clicked', users);
+
+  const handleUsernameChange = (e) => {
+      setUsernameValue(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+      setPasswordValue(e.target.value);
+  };
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
@@ -100,11 +111,12 @@ const SignIn = (props) => {
               required
               fullWidth
               id="username"
-              data-testid="username
-              "
+              data-testid="username"
               label="Username"
               name="username"
               autoComplete="username"
+              value={usernameValue}
+              onChange={handleUsernameChange}
               autoFocus
             />
             <TextField
@@ -113,6 +125,8 @@ const SignIn = (props) => {
               fullWidth
               name="password"
               label="Password"
+              value={passwordValue}
+              onChange={handlePasswordChange}
               type={showPassword ? "text" : "password"}
               id="password"
               data-testid="password"
