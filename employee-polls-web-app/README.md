@@ -92,37 +92,48 @@ AWS s3 bucket is not connected, so uploading of images and other files will not 
 
 ## Available Components details with screenshots
 
+
 #### Home Component before user sign-in is the public page even autherized and unathorized users can visit
-    <img src="public/app-screenshots/home-before-sign-in.png" width="820px">
+<img src="public/app-screenshots/home-before-sign-in.png" width="820px">
+
 #### Home Component after user sign-in will show the changes in NavBar component
-    <img src="public/app-screenshots/home-after-sign-in.png" width="820px">
+<img src="public/app-screenshots/home-after-sign-in.png" width="820px">
+
 #### SignIn Component will help to log in with in the application as autherized user
-    <img src="public/app-screenshots/sign-in.png" width="820px">
+<img src="public/app-screenshots/sign-in.png" width="820px">
+
 #### SignUp Component will help to register user
-    <img src="public/app-screenshots/sign-up.png" width="820px">
+<img src="public/app-screenshots/sign-up.png" width="820px">
+
 #### ForgotPassword Component will help to reset password
-    <img src="public/app-screenshots/forgot-password.png" width="820px">
+<img src="public/app-screenshots/forgot-password.png" width="820px">
+
 #### Dashboard Component will show all the New Question and all the Answered Question
-    <img src="public/app-screenshots/dash-board.png" width="820px">
+<img src="public/app-screenshots/dash-board.png" width="820px">
+    
 #### Leaderboard Component will show table of usename, answered and created question
-    <img src="public/app-screenshots/leader-board.png" width="820px">
+<img src="public/app-screenshots/leader-board.png" width="820px">
+    
 #### NewPoll Component to create new poll
-    <img src="public/app-screenshots/add.png" width="820px">
+<img src="public/app-screenshots/add.png" width="820px">
+    
 #### QuestionPage Component to view and poll question
-    <img src="public/app-screenshots/question-id.png" width="820px">
+<img src="public/app-screenshots/question-id.png" width="820px">
+
 #### QuestionPage Component when question id is not correct
-    <img src="public/app-screenshots/question-id-incorrect.png" width="820px">
+<img src="public/app-screenshots/question-id-incorrect.png" width="820px">
+
 #### NavBar Component before user sign-in
-    <img src="public/app-screenshots/navbar-sign-out.png" width="820px">
+<img src="public/app-screenshots/navbar-sign-out.png" width="820px">
+
 #### NavBar Component after user sign-in
-    <img src="public/app-screenshots/navbar-sign-in.png" width="820px">
+<img src="public/app-screenshots/navbar-sign-in.png" width="820px">
+
 #### PageNotFound Component is used when user trying to access page that doesn't exist.
-    <img src="public/app-screenshots/page-not-found.png" width="820px">
+<img src="public/app-screenshots/page-not-found.png" width="820px">
+
 #### NotAuthorized Component is used when user trying to access page that is not authorized for them.
-    <img src="public/app-screenshots/not-authorized.png" width="820px">
+<img src="public/app-screenshots/not-authorized.png" width="820px">
+
 #### Copyright Component is used to show copyrigh section within the footor
-    <img src="public/app-screenshots/copyright.png" width="820px">
-
-
-
-
+<img src="public/app-screenshots/copyright.png" width="820px">
