@@ -35,15 +35,17 @@ This program contains 6 major projects with a deep concept of node for app devel
 
    1. Backend Development with Node.js
     In the first course, you learned about developing a node app using Node, jasmine, and configuration middleware server as express, etc.
+    <strong>
       1. Foundations of backend Development
       2. Getting started with Node.js
       3. Developing with Typescript
       4. Unit Testing with Jasmine
       5. Building a server
       6. Image Processing Api
-
+    </strong>
    2. React & Redux
     In the second course, you learned about react and redux in dept.
+    <strong>
       1. Introduction to the course
       2. Managing State
       3. UI Plus Redux
@@ -53,6 +55,7 @@ This program contains 6 major projects with a deep concept of node for app devel
       7. React-Redux Binding
       8. Testing with Jest
       9. Employee Polls Web App Project
+    </strong>
 
 
    3. In this third course, you learned about the advanced python.
