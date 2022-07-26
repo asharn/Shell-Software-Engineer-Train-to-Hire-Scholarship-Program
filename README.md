@@ -1,5 +1,6 @@
 # Shell-Software-Engineer-Train-to-Hire-Scholarship-Program
 This repository contain all the activities and projects that I will accomplish while I am on learning journey.
+I will commit all the code realted to practice project as well as course project. This repository will make clear about the effort you need to accomplish while pursuing this Nano Degree course.
 
 
 ## Content 
@@ -8,8 +9,6 @@ This repository contain all the activities and projects that I will accomplish w
 - [Foundation Course](#foundation-course)
 - [List of projects you will develop](#list-of-projects)
 - [What you will be learned?](#what-you-will-be-learned)
-- [What it Does?](#what-it-does)
-- [How it Works?](#how-it-works)
 - [View Certificate](#view-certificate)
 
 
@@ -17,7 +16,7 @@ This repository contain all the activities and projects that I will accomplish w
 After completing this degree, you will have enough knowledge to start implementing npm, node, react and other projects in your work. I am always learning and I take many online courses myself! So I know how difficult it was to take time out of your schedule and dedicate the many hours of hard work it took to complete this course. I know that there were some very difficult concepts to learn, some of the quizzes and coding exercises were tough, and the projects were challenging. 
 
 ## Foundation Course
-Visit this ![link](https://github.com/asharn/4-months-software-engineer-for-shell#4-months-software-engineer-for-shell-scholarship-nanodegree-program) to see the activities and process to get enrollement to this program.
+Visit this [link](https://github.com/asharn/4-months-software-engineer-for-shell#4-months-software-engineer-for-shell-scholarship-nanodegree-program) to see the activities and process to get enrollement to this program.
 
 
 ## List of projects
@@ -34,23 +33,32 @@ Content to view all the projects are listed below:
 ## What you will be learned?
 This program contains 6 major projects with a deep concept of node for app development. This course cover topic as:
 
-   1. In the first course, you learned about what developing a node app using Node, jasmine, and configuration middleware server as express, etc.
+   1. Backend Development with Node.js
+    In the first course, you learned about developing a node app using Node, jasmine, and configuration middleware server as express, etc.
+      1. Foundations of backend Development
+      2. Getting started with Node.js
+      3. Developing with Typescript
+      4. Unit Testing with Jasmine
+      5. Building a server
+      6. Image Processing Api
 
-   2. In the second course, you learned about react and redux in dept.
+   2. React & Redux
+    In the second course, you learned about react and redux in dept.
+      1. Introduction to the course
+      2. Managing State
+      3. UI Plus Redux
+      4. Redux Middleware
+      5. Redux with React
+      6. Asynchronous Redux
+      7. React-Redux Binding
+      8. Testing with Jest
+      9. Employee Polls Web App Project
+
 
    3. In this third course, you learned about the advanced python.
 
 
- ## What it Does?
-   
-
-
-## How it Works?
-
-![dummy diagram](./images/arch_diagram.png)
-
-
-   ## View Certificate
+## View Certificate
    <object data="certificate.pdf" type="application/pdf" width="700px" height="700px">
     <embed src="certificate.pdf">
         <p>Please download the PDF to view it: <a href="certificate.pdf">Download PDF</a>.</p>
