@@ -3,8 +3,6 @@ import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import Checkbox from '@mui/material/Checkbox';
 import Link from '@mui/material/Link';
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
@@ -48,7 +46,7 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
-          <Box component="form" noValidate onSubmit={handleSubmit} sx={{ mt: 3 }}>
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
                 <TextField
@@ -79,6 +77,7 @@ export default function SignUp() {
                   label="Username"
                   name="username"
                   autoComplete="username"
+                  inputProps={{ minLength: 6 }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -90,8 +89,9 @@ export default function SignUp() {
                   type={showPassword ? "text" : "password"}
                   id="password"
                   autoComplete="new-password"
-                  InputProps={{ // <-- This is where the toggle button is added.
-                    endAdornment: (
+                  inputProps={{ minLength: 8 }}
+                  InputProps={{
+                    endAdornment: (  // <-- This is where the toggle button is added.
                       <InputAdornment position="end">
                         <IconButton
                           aria-label="toggle password visibility"
@@ -101,6 +101,7 @@ export default function SignUp() {
                         </IconButton>
                       </InputAdornment>
                     )
+                    
                   }}
                 />
               </Grid>

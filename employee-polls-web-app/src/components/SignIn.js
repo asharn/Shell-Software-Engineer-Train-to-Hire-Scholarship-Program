@@ -26,8 +26,8 @@ const SignIn = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
-  const [usernameValue, setUsernameValue] = React.useState(null);
-  const [passwordValue, setPasswordValue] = React.useState(null);
+  const [usernameValue, setUsernameValue] = React.useState('');
+  const [passwordValue, setPasswordValue] = React.useState('');
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
   const { users } = props;

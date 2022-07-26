@@ -16,16 +16,18 @@ const theme = createTheme({
     button: {
       textTransform: "none"
     }
-  },
-  ':hover': {
-      bgcolor: 'primary.main', // theme.palette.primary.main
-      color: 'white',
-    },
+  }
 });
 
 const NavButton = (props) => {
     return(
-        <Button color='inherit' href={props.href} theme={theme}>{props.text}</Button>
+        <Button color='inherit' href={props.href} theme={theme} sx={{
+            ':hover': {
+              bgcolor: 'white', 
+              color: 'black',
+            },            
+            width: '90px',
+          }}>{props.text}</Button>
     )
 }
 

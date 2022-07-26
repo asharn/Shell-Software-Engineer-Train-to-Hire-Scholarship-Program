@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot testing for Home component. renders Home component with toMatchSnapshot. 1`] = `
+<div
+  style={
+    Object {
+      "alignItems": "center",
+      "direction": "column",
+      "display": "grid",
+      "height": "75vh",
+      "justifyContent": "center",
+    }
+  }
+>
+  <h1>
+    Welcome to Home page of Employee Polls. 
+  </h1>
+  <h2>
+    This is public page, so no need to sign in. Anycan can visit.
+  </h2>
+</div>
+`;

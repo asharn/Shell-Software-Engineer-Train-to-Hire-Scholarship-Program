@@ -1,4 +1,15 @@
-# Getting Started with Create React App
+# Employee Polls Project
+
+This is the starter code for the assessment project for Udacity's React & Redux course.
+
+The `_DATA.js` file represents a fake database and methods that let you access the data. The only thing you need to edit in the ` _DATA.js` file is the value of `avatarURL`. Each user should have an avatar, so you’ll need to add the path to each user’s avatar.
+
+You can check content of `_DATA.js` by using this [Link](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/blob/main/employee-polls-web-app/src/utils/_DATA.js).
+
+The details about the table and api functions is shown in [README.md](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/blob/main/employee-polls-web-app/src/utils/README.md).
+
+
+## Getting Started with Employee Polls Project
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -23,6 +34,10 @@ For code coverage report you can run with --coverage
 `npm test -- --coverage --watchAll=false`
 `npm test -- --coverage --watchAll=false | grep Statements | awk '{print $3}'`
 
+ScreenShot of executed test cases is:
+<img src="/public/app-screenshots/testcase-execution.png" width="820px">
+
+
 ### `npm run build`
 
 Builds the app for production to the `build` folder.\
@@ -33,42 +48,56 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### `npm run start-all`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`"start-all": "npm run build && npm test -- --coverage --watchAll=false && npm run start"
+`
+This script will start build, then run test with showing and creating code coverage report after that server will be up for the application. 
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Hosted on Heroku
+This app is hoted on heroku as well so if any one want to check the functionality and check with this [**Heroku Employee Polls Web App**](https://employee-polls-web-app.herokuapp.com/). 
 
-## Learn More
+In Heroku hosted, you will see some glitches in style and images which is cause due to Heroku hosting. So, can only verify functionality which will be working correctly.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+AWS s3 bucket is not connected, so uploading of images and other files will not work.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Available Components details with screenshots
 
-### Analyzing the Bundle Size
+### Home Component before user sign-in is the public page even autherized and unathorized users can visit
+<img src="/public/app-screenshots/home-before-sign-in.png" width="820px">
+### Home Component after user sign-in will show the changes in NavBar component
+<img src="/public/app-screenshots/home-after-sign-in.png" width="820px">
+### SignIn Component will help to log in with in the application as autherized user
+<img src="/public/app-screenshots/sign-in.png" width="820px">
+### SignUp Component will help to register user
+<img src="/public/app-screenshots/sign-up.png" width="820px">
+### ForgotPassword Component will help to reset password
+<img src="/public/app-screenshots/forgot-password.png" width="820px">
+### Dashboard Component will show all the New Question and all the Answered Question
+<img src="/public/app-screenshots/dash-board.png" width="820px">
+### Leaderboard Component will show table of usename, answered and created question
+<img src="/public/app-screenshots/leader-board.png" width="820px">
+### NewPoll Component to create new poll
+<img src="/public/app-screenshots/add.png" width="820px">
+### QuestionPage Component to view and poll question
+<img src="/public/app-screenshots/question-id.png" width="820px">
+### QuestionPage Component when question id is not correct
+<img src="/public/app-screenshots/question-id-incorrect.png" width="820px">
+### NavBar Component before user sign-in
+<img src="/public/app-screenshots/navbar-sign-out.png" width="820px">
+### NavBar Component after user sign-in
+<img src="/public/app-screenshots/navbar-sign-in.png" width="820px">
+### PageNotFound Component is used when user trying to access page that doesn't exist.
+<img src="/public/app-screenshots/page-not-found.png" width="820px">
+### NotAuthorized Component is used when user trying to access page that is not authorized for them.
+<img src="/public/app-screenshots/not-authorized.png" width="820px">
+### Copyright Component is used to show copyrigh section within the footor
+<img src="/public/app-screenshots/copyright.png" width="820px">
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
