@@ -115,7 +115,7 @@ const LeaderBoard = (props) => {
                           { row.answerCount }
                         </StyledTableCell>
                       );
-                    } else if(column.id ==='created') {
+                    } else {
                       return (
                         <StyledTableCell key={column.id} align={column.align}>
                           { row.questionCount }

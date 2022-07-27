@@ -9,7 +9,7 @@ const SignOut = (props) => {
   const navigate = useNavigate();
   React.useEffect(() => {
     navigate('/sign-in');
-  }, []);
+  }, [navigate]);
   props.dispatch(setAuthedUser(null));
   localStorage.clear();
   sessionStorage.clear();

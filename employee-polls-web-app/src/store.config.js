@@ -13,5 +13,7 @@ const persistConfig = {
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 const store = createStore(persistedReducer, middleware);
 const persistor = persistStore(store);
+
+const storeAndPersistor = {store, persistor};
  
-export default {store, persistor};
+export default storeAndPersistor;

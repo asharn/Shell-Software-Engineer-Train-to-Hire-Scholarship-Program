@@ -57,7 +57,7 @@ const QuestionPage = (props) => {
       }
   }
 
-    }, []);
+    }, [flagFirstOption, flagSecondOption, props]);
 
     if(!props.questions[props.id]){
       return (

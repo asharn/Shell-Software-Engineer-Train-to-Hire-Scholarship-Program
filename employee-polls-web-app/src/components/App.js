@@ -23,7 +23,7 @@ const App = (props) => {
     if(props.userLoggedIn===false){
       props.dispatch(handleInitialData());
     }
-   }, []);
+   }, [props]);
   return (
       <div className="container">
         <NavBar />
