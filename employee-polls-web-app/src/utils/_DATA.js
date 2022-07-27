@@ -159,6 +159,17 @@ let users = {
       }
     }
   }
+
+  function formatUser ({ firstname, lastname, username, password, avatarURL }) {
+    return {
+      id: username,
+      password: password,
+      name: firstname + ' ' + lastname,
+      avatarURL: avatarURL,
+      answers: {},
+      questions: []
+    }
+  }
   
   export function _saveQuestion (question) {
     return new Promise((resolve, reject) => {
@@ -191,7 +202,7 @@ let users = {
       if (!authedUser || !qid || !answer) {
         reject("Please provide authedUser, qid, and answer");
       }
-  
+      console.log('Users : ', users);
       setTimeout(() => {
         users = {
           ...users,
@@ -216,6 +227,24 @@ let users = {
         }
   
         resolve(true)
+      }, 500)
+    })
+  }
+
+  export function _saveUser (user) {
+    return new Promise((resolve, reject) => {
+      if (!user.firstname || !user.lastname || !user.username || !user.password || !user.avatarURL) {
+        reject("Please provide firstname, lastname, username, password, and avatarURL");
+      }
+
+      const formattedUser = formatUser(user);
+      setTimeout(() => {
+        users = {	
+          ...users,	
+          [formattedUser.id]: formattedUser
+      
+      }
+        resolve(formattedUser)
       }, 500)
     })
   }

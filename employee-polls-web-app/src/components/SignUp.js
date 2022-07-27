@@ -12,20 +12,100 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
+import CheckCircle from '@mui/icons-material/CheckCircle';
+import Cancel from '@mui/icons-material/Cancel';
+
 import { IconButton, InputAdornment } from '@mui/material';
+import { connect } from 'react-redux';
+import { useNavigate} from "react-router-dom";
+
+import { handleSaveUser} from '../actions/users';
+import { setAuthedUser } from '../actions/authedUser';
+import { handleInitialData } from "../actions/shared";
+import {generateRandomProfilePic} from "../utils/generateRandomProfilePic";
 
 const theme = createTheme();
 
-export default function SignUp() {
+const SignUp = (props) => {
+  const navigate = useNavigate();
+
+  const [success, setSuccess] = React.useState(false);
+  const [error, setError] = React.useState(false);
+  const [errorMsg, setErrorMsg] = React.useState('');
   const [showPassword, setShowPassword] = React.useState(false);
+  const [hideCancel, setHideCancel] = React.useState(false);
+  const [showIconVisibilityOnInputBox, setShowIconVisibilityOnInputBox] = React.useState('hidden');
+
+
+  const handleHideCancel  = (e) => {
+    e.preventDefault();
+    const username = e.target.value;
+    if(username.length>=6){
+      setShowIconVisibilityOnInputBox('visible');
+      if(!props.userIds.includes(e.target.value)){
+        setHideCancel(true);
+      }else{
+        setHideCancel(false);
+      }
+    }else{
+      setHideCancel(false);
+      setShowIconVisibilityOnInputBox('hidden');
+    }
+  };
+
   const handleClickShowPassword = () => setShowPassword(!showPassword);
+
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      username: data.get('username'),
-      password: data.get('password'),
-    });
+    const username = data.get('username');
+    const password = data.get('password');
+    const firstname = data.get('firstName');
+    const lastname = data.get('lastName');
+    if(firstname === ''){
+      setSuccess(false);
+      setError(true);
+      setErrorMsg('First Name is empty.');
+    }else if(lastname === ''){
+      setSuccess(false);
+      setError(true);
+      setErrorMsg('Last Name is empty.');
+    }else if(username === '' || hideCancel===false){
+      setSuccess(false);
+      setError(true);
+      setErrorMsg('Username is invalid.');
+    }else if(password === '' || password.length < 8){
+      setSuccess(false);
+      setError(true);
+      setErrorMsg('Password is invalid.');
+    }else{
+      if(!props.users[username]){
+        new Promise((res, rej) => {
+          const avatarURL = generateRandomProfilePic(username);
+          props.dispatch(handleSaveUser({
+            firstname,
+            lastname,
+            username,
+            password,
+            avatarURL
+          }));
+          ;
+          setTimeout(() => res(), 500);
+        })
+        .then(() => props.dispatch(handleInitialData()))
+        .then(() => props.dispatch(setAuthedUser(username)))
+        .then(() => {
+          setSuccess(true);
+          setError(false);
+          navigate('/dashboard');
+        });
+      }else{
+        setSuccess(false);
+        setError(true);
+        setErrorMsg('Username is invalid.');
+
+      }
+    }
   };
 
   return (
@@ -46,6 +126,12 @@ export default function SignUp() {
           <Typography component="h1" variant="h5">
             Sign up
           </Typography>
+          {success &&
+                <Typography color='success' className={"Success"} data-testid="success-header">SignUp Successfully!</Typography>
+            }
+            {error &&
+                <Typography color='error' className={"Error"} data-testid="error-header">{errorMsg}</Typography>
+            }
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <Grid container spacing={2}>
               <Grid item xs={12} sm={6}>
@@ -77,7 +163,23 @@ export default function SignUp() {
                   label="Username"
                   name="username"
                   autoComplete="username"
-                  inputProps={{ minLength: 6 }}
+                  onChange={handleHideCancel}
+                  inputProps={{ minLength: 6, maxLength: 20 }}
+                  InputProps={{
+                    endAdornment: (  
+                      <InputAdornment position="end">
+                        <IconButton
+                          aria-label="toggle usename existance"
+                          style={{
+                            visibility: {showIconVisibilityOnInputBox}
+                            }}
+                        >
+                          {hideCancel ? <CheckCircle color='success'/> : <Cancel color='error'/>}
+                        </IconButton>
+                      </InputAdornment>
+                    )
+                    
+                  }}
                 />
               </Grid>
               <Grid item xs={12}>
@@ -91,7 +193,7 @@ export default function SignUp() {
                   autoComplete="new-password"
                   inputProps={{ minLength: 8 }}
                   InputProps={{
-                    endAdornment: (  // <-- This is where the toggle button is added.
+                    endAdornment: (  
                       <InputAdornment position="end">
                         <IconButton
                           aria-label="toggle password visibility"
@@ -127,3 +229,17 @@ export default function SignUp() {
     </ThemeProvider>
   );
 }
+
+const mapStateToProps = ({  authedUser, users  }) => {
+  const userIds = Object.keys(users);  
+  const avatarURLs = Object.values(users)
+  .map(user => (user.avatarURL)); 
+  return {
+      userIds,
+      avatarURLs,
+      authedUser,
+      users
+  };
+};
+
+export default connect(mapStateToProps)(SignUp);

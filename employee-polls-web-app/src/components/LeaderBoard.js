@@ -47,7 +47,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 const LeaderBoard = (props) => {
   const [page, setPage] = React.useState(0);
-  const [rowsPerPage, setRowsPerPage] = React.useState(10);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -130,7 +130,7 @@ const LeaderBoard = (props) => {
         </Table>
       </TableContainer>
       <TablePagination
-        rowsPerPageOptions={[10, 25, 100]}
+        rowsPerPageOptions={[5, 10, 15]}
         component="div"
         count={rows.length}
         rowsPerPage={rowsPerPage}

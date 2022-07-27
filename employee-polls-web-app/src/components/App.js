@@ -18,11 +18,8 @@ import DashBoard from './DashBoard';
 import * as PathUrlConstants from '../utils/PathUrlConstants'
 
 const App = (props) => {
-  localStorage.clear();
    useEffect(() => {
-    if(props.userLoggedIn===false){
-      props.dispatch(handleInitialData());
-    }
+     props.dispatch(handleInitialData());
    }, [props]);
   return (
       <div className="container">
