@@ -31,12 +31,12 @@ function addAnswerToUser(authedUser, qid, answer) {
 
 export function handleSaveQuestionAnswer(authedUser, qid, answer) {
   return dispatch => {
-    dispatch(addAnswerToUser(authedUser, qid, answer));
-    dispatch(addAnswerToQuestion(authedUser, qid, answer));
-
-    return saveQuestionAnswer(authedUser, qid, answer).catch(e => {
-      console.warn('Error in handleSaveQuestionAnswer:', e);
-    });
+    return saveQuestionAnswer(authedUser, qid, answer).then(
+      success => {
+        dispatch(addAnswerToUser(authedUser, qid, answer));
+        dispatch(addAnswerToQuestion(authedUser, qid, answer));
+      }
+    );
   };
 }
 

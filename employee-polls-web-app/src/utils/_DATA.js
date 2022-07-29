@@ -147,8 +147,8 @@ let users = {
   function formatQuestion ({ optionOneText, optionTwoText, author }) {
     return {
       id: generateUID(),
-      timestamp: Date.now(),
       author,
+      timestamp: Date.now(),
       optionOne: {
         votes: [],
         text: optionOneText,
@@ -179,6 +179,8 @@ let users = {
       const authedUser = question.author;	
       const formattedQuestion = formatQuestion(question)
       setTimeout(() => {
+
+      try{
         questions = {
           ...questions,
           [formattedQuestion.id]: formattedQuestion
@@ -191,6 +193,11 @@ let users = {
               questions: users[authedUser].questions.concat([formattedQuestion.id])	
           }	
       }
+
+    } catch (e) {
+      //Redux state management is not going to work at this level
+      console.info("New users are not saved to real database, current users in _Data are : ", users, e);
+    }
   
         resolve(formattedQuestion)
       }, 1000)
@@ -204,6 +211,7 @@ let users = {
       }
       console.log('Users : ', users);
       setTimeout(() => {
+        try {
         users = {
           ...users,
           [authedUser]: {
@@ -225,6 +233,10 @@ let users = {
             }
           }
         }
+      } catch (e) {
+        //Redux state management is not going to work at this level
+        console.info("New users are not saved to real database, current users in _Data are : ", users,e);
+      }
   
         resolve(true)
       }, 500)

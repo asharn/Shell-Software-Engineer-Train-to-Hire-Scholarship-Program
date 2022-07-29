@@ -1,4 +1,4 @@
-import * as api from '../../utils/api'
+import {saveQuestion, saveQuestionAnswer} from '../../utils/api'
 
 describe('Question saving related testing.', () => {
     it('will return success with question object if optionOneText, optionTwoText and author are found', async() => {
@@ -7,7 +7,7 @@ describe('Question saving related testing.', () => {
             optionTwoText: 'Would you like Coffee.', 
             author: 'sarahedo'
         };
-        var result = await api.saveQuestion(question);
+        var result = await saveQuestion(question);
         expect(result.author).toEqual('sarahedo');
         expect(result.optionOne.text).toEqual('Would you like Tea.');
         expect(result.optionTwo.text).toEqual('Would you like Coffee.');
@@ -18,7 +18,7 @@ describe('Question saving related testing.', () => {
             optionTwoText: 'Would you like Coffee.', 
             author: 'sarahedo'
         };
-        await expect(api.saveQuestion(question)).rejects.toEqual('Please provide optionOneText, optionTwoText, and author');
+        await expect(saveQuestion(question)).rejects.toEqual('Please provide optionOneText, optionTwoText, and author');
     });
 
     it('will return error with error message if optionTwoText is not found and optionOneText and author are found', async() => {
@@ -26,7 +26,7 @@ describe('Question saving related testing.', () => {
             optionOneText: 'Would you like Coffee.', 
             author: 'sarahedo'
         };
-        await expect(api.saveQuestion(question)).rejects.toEqual('Please provide optionOneText, optionTwoText, and author');
+        await expect(saveQuestion(question)).rejects.toEqual('Please provide optionOneText, optionTwoText, and author');
     });
 
     it('will return error with error message if author is not found and optionTwoText and optionOneText are found', async() => {
@@ -34,7 +34,7 @@ describe('Question saving related testing.', () => {
             optionTwoText: 'Would you like Coffee.', 
             optionOneText: 'Would you like Tea.', 
         };
-        await expect(api.saveQuestion(question)).rejects.toEqual('Please provide optionOneText, optionTwoText, and author');
+        await expect(saveQuestion(question)).rejects.toEqual('Please provide optionOneText, optionTwoText, and author');
     });
 });
 
@@ -44,7 +44,7 @@ describe('Question and Answer saving related testing.', () => {
         const authedUser = 'sarahedo';
         const qid = 'am8ehyc8byjqgar0jgpub9';
         const answer = 'optionOne';
-        var result = await api.saveQuestionAnswer(authedUser,qid,answer);
+        var result = await saveQuestionAnswer(authedUser,qid,answer);
         expect(result).toBeTruthy();
     });
 
@@ -52,20 +52,20 @@ describe('Question and Answer saving related testing.', () => {
         const authedUser = null;
         const qid = 'am8ehyc8byjqgar0jgpub9';
         const answer = 'optionOne';
-        await expect(api.saveQuestionAnswer(authedUser,qid,answer)).rejects.toEqual('Please provide authedUser, qid, and answer');
+        await expect(saveQuestionAnswer(authedUser,qid,answer)).rejects.toEqual('Please provide authedUser, qid, and answer');
     });
 
     it('will return error with error message if qid is not found and authedUser and answer are found', async() => {
         const authedUser = 'sarahedo';
         const qid = null;
         const answer = 'optionOne';
-        await expect(api.saveQuestionAnswer(authedUser,qid,answer)).rejects.toEqual('Please provide authedUser, qid, and answer');
+        await expect(saveQuestionAnswer(authedUser,qid,answer)).rejects.toEqual('Please provide authedUser, qid, and answer');
     });
 
     it('will return error with error message if answer is not found and authedUser and qid are found', async() => {
         const authedUser = 'sarahedo';
         const qid = 'am8ehyc8byjqgar0jgpub9';
         const answer = null;
-        await expect(api.saveQuestionAnswer(authedUser,qid,answer)).rejects.toEqual('Please provide authedUser, qid, and answer');
+        await expect(saveQuestionAnswer(authedUser,qid,answer)).rejects.toEqual('Please provide authedUser, qid, and answer');
     });
 });

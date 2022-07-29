@@ -33,31 +33,6 @@ const withRouter = (Component) => {
 
 const QuestionPage = (props) => {
   let location = useLocation();
-  const [flagSecondOption, setFlagSecondOption] = React.useState(true);
-  const [flagFirstOption, setFlagFirstOption] = React.useState(true);
-  const [voted, setVoted] = React.useState(false);
-  const [totalVotes, setTotalVotes] = React.useState(0);
-  const [optionOneVotesCount, setOptionOneVotesCount] = React.useState(0);
-
-  React.useEffect(() => {
-    if(props.questions[props.id]){
-        
-      const optionOneVotes = props.questions[props.id].optionOne.votes;
-      const optionTwoVotes = props.questions[props.id].optionTwo.votes;
-      setTotalVotes(optionOneVotes.length+optionTwoVotes.length);
-      setOptionOneVotesCount(optionOneVotes.length);
-      if(optionOneVotes.includes(props.authedUser)){
-        setFlagFirstOption(!flagFirstOption);
-        setVoted(true);
-      } 
-
-      if(optionTwoVotes.includes(props.authedUser)){
-        setFlagSecondOption(!flagSecondOption);
-        setVoted(true);
-      }
-  }
-
-    }, [flagFirstOption, flagSecondOption, props]);
 
     if(!props.questions[props.id]){
       return (
@@ -77,24 +52,19 @@ const QuestionPage = (props) => {
     const autherId = props.questions[props.id].author;
     const avatarURL = props.users[autherId].avatarURL;
     const name = props.users[autherId].name;
-    const optionOne = props.questions[props.id].optionOne.text;
-    const optionTwo = props.questions[props.id].optionTwo.text;
-
-
-  
-
+    const optionFirstCount = props.questions[props.id].optionOne.votes.length;
+    const optionSecondCount = props.questions[props.id].optionTwo.votes.length;
+    const {votedFirstOption, votedSecondOption, voted} = props;
+ 
     const handleClick = (event) => {
         event.preventDefault();
-        if(voted === false){
-          setVoted(!voted);
-          setTotalVotes(totalVotes + 1);
-          if(event.currentTarget.id === 'optionOne'){
-            setFlagFirstOption(!flagFirstOption);
-            setOptionOneVotesCount(optionOneVotesCount+1);
-          } else{
-            setFlagSecondOption(!flagSecondOption)
-          }
-          props.dispatch(handleSaveQuestionAnswer(props.authedUser, props.id, event.currentTarget.id));
+        if(!voted){
+          new Promise((res, rej) => {
+            props.dispatch(handleSaveQuestionAnswer(props.authedUser, props.id, event.currentTarget.id));
+            setTimeout(() => res('success'), 1000);
+          }).then(() => {
+            console.log("Answer saved successfully.");
+          });
         }
       };
 
@@ -128,17 +98,17 @@ const QuestionPage = (props) => {
                 maxWidth='420px'
                 align='center'
                 style={{ wordWrap: "break-word" }}
-            >{optionOne}</Typography>
+            >{props.questions[props.id].optionOne.text}</Typography>
             <Button
               style={{marginTop: 'auto', position: 'relative'}}
               type="button"
               fullWidth
-              variant={flagFirstOption ? "outlined" : "contained"}
+              variant={votedFirstOption ? "contained" : "outlined"}
               onClick={handleClick} 
               id="optionOne"
-              color={flagFirstOption ? "primary" : "success"}
+              color={votedFirstOption ?  "success" : "primary"}
             >
-              {voted?<span>- {Math.round((optionOneVotesCount / totalVotes)*100).toFixed(2)}% Votes -</span>:<span>- Click Option One -</span>}
+              {voted?<span>- {Math.round((optionFirstCount / (optionFirstCount+optionSecondCount))*100).toFixed(2)}% Votes -</span>:<span>- Click Option One -</span>}
             </Button>
             </Box>
 
@@ -152,17 +122,17 @@ const QuestionPage = (props) => {
               id="secondOptionText"
               align='center'
               style={{ wordWrap: "break-word" }}
-            >{optionTwo}</Typography>
+            >{props.questions[props.id].optionTwo.text}</Typography>
             <Button
               style={{marginTop: 'auto', position: 'relative'}}
               type="button"
               fullWidth
-              variant={flagSecondOption ? "outlined" : "contained"}
+              variant={votedSecondOption ? "contained" : "outlined"}
               onClick={handleClick} 
               id="optionTwo"
-              color={flagSecondOption ? "primary" : "success"}
+              color={votedSecondOption ? "success" : "primary"}
             >
-              {voted?<span>- {Math.round(((totalVotes - optionOneVotesCount)/ totalVotes)*100).toFixed(2)}% Votes -</span>:<span>- Click Option Two -</span>}
+              {voted?<span>- {Math.round((optionSecondCount/ (optionFirstCount+optionSecondCount))*100).toFixed(2)}% Votes -</span>:<span>- Click Option Two -</span>}
               
             </Button>
             </Box>
@@ -175,11 +145,15 @@ const QuestionPage = (props) => {
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { id } = props.router.params;
+  const voted =  !!users[authedUser].answers[id];
   return {
     id,
     questions,
     users,
     authedUser,
+    voted,
+    votedFirstOption: voted && questions[id].optionOne.votes.includes(authedUser),
+    votedSecondOption: voted &&  questions[id].optionTwo.votes.includes(authedUser)
   };
 };
 

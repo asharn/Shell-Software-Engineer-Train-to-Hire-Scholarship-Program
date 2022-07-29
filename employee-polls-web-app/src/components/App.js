@@ -19,7 +19,9 @@ import * as PathUrlConstants from '../utils/PathUrlConstants'
 
 const App = (props) => {
    useEffect(() => {
-     props.dispatch(handleInitialData());
+     if(!props.userLoggedIn){
+        props.dispatch(handleInitialData());
+     }
    }, [props]);
   return (
       <div className="container">

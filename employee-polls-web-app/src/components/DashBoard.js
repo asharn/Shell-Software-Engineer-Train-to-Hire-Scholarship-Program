@@ -163,8 +163,8 @@ const DashBoard = (props) => {
     const { questionsData } = props;
     return(
         <ThemeProvider theme={theme} >
-            <QuestionDashBoard title='New Question' questions={questionsData.newQuestions}/>
-            <QuestionDashBoard title='Answered Question' questions={questionsData.answeredQuestions}/>
+            <QuestionDashBoard title='New Question' questions={questionsData.newQuestions} />
+            <QuestionDashBoard title='Answered Question' questions={questionsData.answeredQuestions} />
         </ThemeProvider>
     )
 }
@@ -180,7 +180,7 @@ const DashBoard = (props) => {
       name: users[question.author].name,
       date: question.timestamp
     }))
-    .sort((a, b) => a.date - b.date);
+    .sort((a, b) => b.date - a.date);
 
     const newQuestions = allQuestions
     .filter(question => !answeredQuestionIds.includes(question.qid));

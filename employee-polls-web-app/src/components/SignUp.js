@@ -35,6 +35,7 @@ const SignUp = (props) => {
   const [showPassword, setShowPassword] = React.useState(false);
   const [hideCancel, setHideCancel] = React.useState(false);
   const [showIconVisibilityOnInputBox, setShowIconVisibilityOnInputBox] = React.useState('hidden');
+  const [avatarURL, setAvatarURL] = React.useState('');
 
 
   const handleHideCancel  = (e) => {
@@ -51,6 +52,12 @@ const SignUp = (props) => {
       setHideCancel(false);
       setShowIconVisibilityOnInputBox('hidden');
     }
+  };
+
+  const handleAvatarUrl  = (e) => {
+    e.preventDefault();
+    const profilePicName = e.target.value;
+    setAvatarURL(generateRandomProfilePic(profilePicName));
   };
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
@@ -81,7 +88,7 @@ const SignUp = (props) => {
     }else{
       if(!props.users[username]){
         new Promise((res, rej) => {
-          const avatarURL = generateRandomProfilePic(username);
+          setAvatarURL(generateRandomProfilePic(username));
           props.dispatch(handleSaveUser({
             firstname,
             lastname,
@@ -92,7 +99,7 @@ const SignUp = (props) => {
           ;
           setTimeout(() => res(), 500);
         })
-        .then(() => props.dispatch(handleInitialData()))
+        //.then(() => props.dispatch(handleInitialData()))
         .then(() => props.dispatch(setAuthedUser(username)))
         .then(() => {
           setSuccess(true);
@@ -206,6 +213,24 @@ const SignUp = (props) => {
                     
                   }}
                 />
+              </Grid>
+              <Grid container sx={{mt: 2}} alignItems="center">
+                <Grid item xs={12} sm={2} >
+                  <Avatar variant="circular" src={avatarURL} sx={{ml: 2}}></Avatar>
+                </Grid>
+                <Grid item xs={12} sm={10}>
+                  <TextField
+                    autoComplete="profile-pic"
+                    name="profile-pic"
+                    onChange={handleAvatarUrl}
+                    required
+                    fullWidth
+                    id="profile-pic"
+                    label="Enter Text to generate automatic profile picture"
+                    sx={{mr: 2}}
+                    inputProps={{ maxLength: 25 }}
+                    />  
+                </Grid>
               </Grid>
             </Grid>
             <Button
