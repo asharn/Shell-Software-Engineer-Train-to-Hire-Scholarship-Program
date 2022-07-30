@@ -8,7 +8,7 @@ You can check content of `_DATA.js` by using this [Link](https://github.com/asha
 
 The details about the table and api functions is shown in [README.md](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/blob/main/employee-polls-web-app/src/utils/README.md).
 
-You can view live application on Netlify by using this [**Netlify Live Employee Polls Web App**](https://62e17e8e25f4a20bb9b696a6--splendid-sunshine-05d96a.netlify.app/).
+You can view live application on Netlify by using this [**Netlify Live Employee Polls Web App**](https://employee-polls.netlify.app/).
 
 ## Content 
 
@@ -112,7 +112,7 @@ This script will start build, then run test with showing and creating code cover
 
 
 ## Hosted on Netlify
-This app is deployed on Netlify, so if any one want to check the functionality live then click [**Netlify Live Employee Polls Web App**](https://62e17e8e25f4a20bb9b696a6--splendid-sunshine-05d96a.netlify.app/). 
+This app is deployed on Netlify, so if any one want to check the functionality live then click [**Netlify Live Employee Polls Web App**](https://employee-polls.netlify.app/). 
 I have done some testing on this site. So, go check soon. And if you find any issue please raise concern as issue in git repo, pointing the issue.
 
 ## Hosted on Heroku
