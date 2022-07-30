@@ -27,6 +27,13 @@ exports[`Snapshot testing for SignIn component. renders SignIn component with to
     >
       Sign in
     </h1>
+    <p
+      className="MuiTypography-root MuiTypography-body1 Error css-1nkhxq8-MuiTypography-root"
+      data-testid="error-header"
+    >
+       
+       
+    </p>
     <form
       className="MuiBox-root css-164r41r"
       onSubmit={[Function]}
