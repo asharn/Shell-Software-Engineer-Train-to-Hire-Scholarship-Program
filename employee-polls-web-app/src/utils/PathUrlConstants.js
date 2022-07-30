@@ -5,7 +5,11 @@ export const SignInUrl = '/sign-in';
 export const SignOutUrl = '/sign-out'; 
 export const SignUpUrl = '/sign-up'; 
 export const NewPollUrl = '/add'; 
-export const QuestionWithIdUrl = '/question/:id'; 
+export const PathParamId = '/:id';
+export const QuestionUrl = '/question'; 
+export const QuestionWithIdUrl = QuestionUrl+PathParamId; 
 export const OtherThenMapUrl = '/*'; 
 export const ForgotPasswordUrl = '/forgot-password'; 
+
+
 

@@ -1,7 +1,11 @@
 import { Button, Typography } from '@mui/material';
 import React from 'react';
-  
-const PageNotFound = () => {
+import { BUTTON_TEXT_SIGN_IN, HOME } from '../utils/GenericConstants';
+import {SignInUrl, RootPathUrl} from '../utils/PathUrlConstants';
+import { connect } from 'react-redux';
+
+
+const PageNotFound = (props) => {
   return (
     <div
       style={{
@@ -24,11 +28,26 @@ const PageNotFound = () => {
           to Sign In.
         </Typography>
         <Typography variant="h3" color="text.primary" align="center">
-        <Button variant="contained" color='primary' align="center" href='/sign-in'>Sign In</Button>
+          {props.userLoggedIn 
+          ? 
+          <Button variant="contained" color='primary' align="center" href={RootPathUrl}>
+            {HOME}
+          </Button>
+          : 
+          <Button variant="contained" color='primary' align="center" href={SignInUrl}>
+            {BUTTON_TEXT_SIGN_IN}
+          </Button>}
+        
         </Typography>
       </div>
     </div>
   );
 };
   
-export default PageNotFound;
+function mapStateToProps({ authedUser }) {
+  return {
+    userLoggedIn: authedUser !== null
+  };
+}
+
+export default connect(mapStateToProps)(PageNotFound);

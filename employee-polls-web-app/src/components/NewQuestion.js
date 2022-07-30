@@ -11,7 +11,8 @@ import QuestionAnswerRounded from '@mui/icons-material/QuestionAnswerRounded';
 import { handleSaveQuestion } from '../actions/questions';
 import { useNavigate} from "react-router-dom";
 import { connect } from 'react-redux';
-
+import * as PathUrlConstants from '../utils/PathUrlConstants';
+import { CREATE_NEW_POLLS, WOULD_YOU_RATHER, SUBMIT } from '../utils/GenericConstants';
 
 const theme = createTheme();
 
@@ -32,11 +33,9 @@ const theme = createTheme();
         props.dispatch(handleSaveQuestion(optionOne, optionTwo, props.authedUser));
         setTimeout(() => res('success'), 1000);
       }).then(() => {
-        navigate('/dashboard');
+        navigate(PathUrlConstants.DashBoardUrl);
       });
     }
-
-
   };
 
   return (
@@ -55,11 +54,11 @@ const theme = createTheme();
             <QuestionAnswerRounded />
           </Avatar>
           <Typography variant="h4">
-            Create New Poll:
+            {CREATE_NEW_POLLS}
           </Typography>
 
           <Typography variant="h6">
-            Would you rather...
+            {WOULD_YOU_RATHER}
           </Typography>
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
@@ -87,7 +86,7 @@ const theme = createTheme();
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Submit
+              {SUBMIT}
             </Button>
           </Box>
         </Box>

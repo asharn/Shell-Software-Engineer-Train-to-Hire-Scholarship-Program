@@ -9,7 +9,10 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import PollRounded from '@mui/icons-material/PollRounded';
 import {createTheme} from "@mui/material/styles";
+import { useLocation} from "react-router-dom";
 import { Avatar } from '@mui/material';
+import * as PathUrlConstants from '../utils/PathUrlConstants';
+import {COMPANY_NAME, SIGN_IN, SIGN_UP, SIGN_OUT, HOME, DASHBOARD, LEADERBOARD, NEW} from '../utils/GenericConstants';
 
 const theme = createTheme({
   typography: {
@@ -32,13 +35,14 @@ const NavButton = (props) => {
 }
 
 const NavBar = (props) => {
+    const location = useLocation();
     return(
         <div>
         <AppBar position="static">
             <Toolbar>
                 <Stack direction='row' spacing={{ xs: 3, sm: 6, md: 9 }} justifyContent="center" alignItems="center" divider={<Divider orientation="vertical" flexItem />}>
                 <Stack direction='row' justifyContent="center" alignItems="center">
-                    <IconButton href="/" size='large' edge='start' color='inherit' aria-label='logo'>
+                    <IconButton href={PathUrlConstants.RootPathUrl} size='large' edge='start' color='inherit' aria-label='logo'>
                         <PollRounded/>
                     </IconButton>
                     <Typography variant="h6"
@@ -54,19 +58,19 @@ const NavBar = (props) => {
                                 color: 'inherit',
                                 textDecoration: 'none'
                                 }}>
-                    Employee Polls
+                    {COMPANY_NAME}
                     </Typography>
                 </Stack>
                     <Stack direction='row' spacing={1}>
                         {props.userLoggedIn===true ? 
                         <Stack direction='row' spacing={2}>
-                            <NavButton text={'Home'} href={'/'}/>
-                            <NavButton text={'Dashboard'} href={'/dashboard'}/>
-                            <NavButton text={'Leaderboard'} href={'/leaderboard'}/>
-                            <NavButton text={'New'} href={'/add'}/>
+                            <NavButton text={HOME} href={PathUrlConstants.RootPathUrl}/>
+                            <NavButton text={DASHBOARD} href={PathUrlConstants.DashBoardUrl}/>
+                            <NavButton text={LEADERBOARD} href={PathUrlConstants.LeaderBoardUrl}/>
+                            <NavButton text={NEW} href={PathUrlConstants.NewPollUrl}/>
                         </Stack>
                         : 
-                            <NavButton text={'Home'} href={'/'}/>
+                            <NavButton text={HOME} href={PathUrlConstants.RootPathUrl}/>
                         }
                     </Stack>
                     {props.userLoggedIn===true? 
@@ -75,12 +79,12 @@ const NavBar = (props) => {
                                 <Avatar variant='circular' sx={{ width: 24, height: 24 }} src={props.users[props.authedUser].avatarURL}/>
                                 <Typography fontSize='14px'>{props.users[props.authedUser].name}</Typography>
                             </Stack>
-                            <NavButton text={'SignOut'} href={'/sign-out'}/>
+                            <NavButton text={SIGN_OUT} href={PathUrlConstants.SignOutUrl}/>
                         </Stack>
                     :
                         <Stack direction='row' spacing={2}>
-                            <NavButton text={'SignIn'} href={'/sign-in'}/>
-                            <NavButton text={'SignUp'} href={'/sign-up'}/>
+                            <NavButton text={SIGN_IN} href={PathUrlConstants.SignInUrl+'?redirectTo='+location.pathname}/>
+                            <NavButton text={SIGN_UP} href={PathUrlConstants.SignUpUrl+'?redirectTo='+location.pathname}/>
                         </Stack>
                     }
                 </Stack>

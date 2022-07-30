@@ -21,7 +21,7 @@ const App = (props) => {
    useEffect(() => {
      if(!props.userLoggedIn){
         props.dispatch(handleInitialData());
-     }
+      }
    }, [props]);
   return (
       <div className="container">
@@ -47,6 +47,7 @@ const App = (props) => {
             <Route path={PathUrlConstants.SignUpUrl} element={<SignUp/>} />
             <Route path={PathUrlConstants.DashBoardUrl} element={<NotAuthorized />} />
             <Route path={PathUrlConstants.LeaderBoardUrl} element={<NotAuthorized />} />
+            <Route path={PathUrlConstants.QuestionWithIdUrl} element={<NotAuthorized />} />
             <Route path={PathUrlConstants.SignOutUrl} element={<SignIn/>} />
             <Route path={PathUrlConstants.NewPollUrl} element={<NotAuthorized/>} />
             <Route path={PathUrlConstants.OtherThenMapUrl} element={<PageNotFound />} />

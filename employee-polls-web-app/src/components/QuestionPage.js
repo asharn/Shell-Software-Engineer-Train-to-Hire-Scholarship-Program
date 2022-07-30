@@ -9,6 +9,13 @@ import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
 import { handleSaveQuestionAnswer } from '../actions/users';
+import { 
+        NO_MATCH_FOR, 
+        WOULD_YOU_RATHER, 
+        POLL_BY, 
+        BUTTON_TEXT_CLICK_OPTION_ONE, 
+        BUTTON_TEXT_CLICK_OPTION_TWO, 
+        BUTTON_TEXT_VOTES } from "../utils/GenericConstants";
 
 
   
@@ -43,7 +50,7 @@ const QuestionPage = (props) => {
                   height: '80vh'
                 }}>
           <h3>
-            No match for <code>{location.pathname}</code>
+            {NO_MATCH_FOR}<code>{location.pathname}</code>
           </h3>
         </div>
       );
@@ -54,7 +61,7 @@ const QuestionPage = (props) => {
     const name = props.users[autherId].name;
     const optionFirstCount = props.questions[props.id].optionOne.votes.length;
     const optionSecondCount = props.questions[props.id].optionTwo.votes.length;
-    const {votedFirstOption, votedSecondOption, voted} = props;
+    const {votedFirstOption, voted} = props;
  
     const handleClick = (event) => {
         event.preventDefault();
@@ -82,11 +89,11 @@ const QuestionPage = (props) => {
           }}
         >
             <Typography variant="h3">
-            Poll By {name}:
+            {POLL_BY} {name}:
           </Typography>
           <Avatar variant='circular' sx={{ width: 140, height: 140 }} src={avatarURL}/>
           <Typography variant="h4">
-            Would you rather...
+            {WOULD_YOU_RATHER}
           </Typography>
           <Box component="form"  sx={{marginTop: 2, display: 'flex', flexDirection: 'row',}}>
             <Box border={1} sx={{ m: 0.5, verticalAlign: 'bottom', display: 'flex', flexDirection: 'column',}}>
@@ -108,7 +115,7 @@ const QuestionPage = (props) => {
               id="optionOne"
               color={votedFirstOption ?  "success" : "primary"}
             >
-              {voted?<span>- {Math.round((optionFirstCount / (optionFirstCount+optionSecondCount))*100).toFixed(2)}% Votes -</span>:<span>- Click Option One -</span>}
+              {voted?<span>- {Math.round((optionFirstCount / (optionFirstCount+optionSecondCount))*100).toFixed(2)}% {BUTTON_TEXT_VOTES} -</span>:<span>{BUTTON_TEXT_CLICK_OPTION_ONE}</span>}
             </Button>
             </Box>
 
@@ -127,12 +134,12 @@ const QuestionPage = (props) => {
               style={{marginTop: 'auto', position: 'relative'}}
               type="button"
               fullWidth
-              variant={votedSecondOption ? "contained" : "outlined"}
+              variant={(voted && !votedFirstOption) ? "contained" : "outlined"}
               onClick={handleClick} 
               id="optionTwo"
-              color={votedSecondOption ? "success" : "primary"}
+              color={(voted && !votedFirstOption) ? "success" : "primary"}
             >
-              {voted?<span>- {Math.round((optionSecondCount/ (optionFirstCount+optionSecondCount))*100).toFixed(2)}% Votes -</span>:<span>- Click Option Two -</span>}
+              {voted?<span>- {Math.round((optionSecondCount/ (optionFirstCount+optionSecondCount))*100).toFixed(2)}% {BUTTON_TEXT_VOTES} -</span>:<span>{BUTTON_TEXT_CLICK_OPTION_TWO}</span>}
               
             </Button>
             </Box>
@@ -152,8 +159,7 @@ const mapStateToProps = ({ authedUser, questions, users }, props) => {
     users,
     authedUser,
     voted,
-    votedFirstOption: voted && questions[id].optionOne.votes.includes(authedUser),
-    votedSecondOption: voted &&  questions[id].optionTwo.votes.includes(authedUser)
+    votedFirstOption: voted && users[authedUser].answers[id]==='optionOne'
   };
 };
 

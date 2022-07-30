@@ -10,19 +10,6 @@ import TableRow from '@mui/material/TableRow';
 import { styled } from '@mui/material/styles';
 import { Avatar, Stack, Typography } from '@mui/material';
 import { connect } from 'react-redux';
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-
-
-const withRouter = (Component) => {
-  const ComponentWithRouterProp = (props) => {
-    let location = useLocation();
-    let navigate = useNavigate();
-    let params = useParams();
-    return <Component {...props} router={{ location, navigate, params }} />;
-  };
-
-  return ComponentWithRouterProp;
-};
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -158,4 +145,4 @@ const mapStateToProps = ({ users }) => ({
     .reverse()
 });
 
-export default withRouter(connect(mapStateToProps)(LeaderBoard));
+export default connect(mapStateToProps)(LeaderBoard);

@@ -17,12 +17,27 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { setAuthedUser } from '../actions/authedUser';
 import { connect } from 'react-redux';
 import { IconButton, InputAdornment } from '@mui/material';
-import { useNavigate} from "react-router-dom";
+import { useNavigate, useLocation, useParams} from "react-router-dom";
+import { ForgotPasswordUrl, RootPathUrl, SignUpUrl} from '../utils/PathUrlConstants';
+import { BUTTON_TEXT_SIGN_IN,FORGOT_PASSWORD_WHAT,DONT_HAVE_AN_ACCOUNT } from '../utils/GenericConstants';
+
+
+const withRouter = (Component) => {
+  const ComponentWithRouterProp = (props) => {
+    let location = useLocation();
+    let navigate = useNavigate();
+    let params = useParams();
+    return <Component {...props} router={{ location, navigate, params }} />;
+  };
+
+  return ComponentWithRouterProp;
+};
 
 const theme = createTheme();
 
 const SignIn = (props) => {
   const navigate = useNavigate();
+  const search = useLocation().search;
   const [showPassword, setShowPassword] = React.useState(false);
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -30,14 +45,16 @@ const SignIn = (props) => {
   const [passwordValue, setPasswordValue] = React.useState('');
 
   const handleClickShowPassword = () => setShowPassword(!showPassword);
-  const { users } = props;
+  const { users} = props;
 
   const handleUsernameChange = (e) => {
       setUsernameValue(e.target.value);
+      setError(false);
   };
 
   const handlePasswordChange = (e) => {
       setPasswordValue(e.target.value);
+      setError(false);
   };
 
   const handleSubmit = (event) => {
@@ -60,7 +77,8 @@ const SignIn = (props) => {
           props.dispatch(setAuthedUser(username));
           setSuccess(true);
           setError(false);
-          navigate('/dashboard');
+          const redirectTo = new URLSearchParams(search).get('redirectTo');
+          redirectTo && redirectTo!=='' ? navigate(redirectTo) : navigate(RootPathUrl);
         });
       }else{
         setSuccess(false);
@@ -88,11 +106,10 @@ const SignIn = (props) => {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          {success &&
-                <Typography color='success' className={"Success"} data-testid="success-header">Login Successfully!</Typography>
-            }
-            {error &&
-                <Typography color='error' className={"Error"} data-testid="error-header">Username or Password is invalid.</Typography>
+          {success ?
+              <Typography color='success' className={"Success"} data-testid="success-header">Login Successfully!</Typography>
+            :
+              <Typography color='error' className={"Error"} data-testid="error-header">&nbsp;{error && 'Username or Password is invalid.'}&nbsp;</Typography>
             }
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 1 }}>
             <TextField
@@ -144,17 +161,17 @@ const SignIn = (props) => {
               sx={{ mt: 3, mb: 2 }}
               data-testid='sign-in'
             >
-              Sign In
+              {BUTTON_TEXT_SIGN_IN}
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="/forgot-password" variant="body2">
-                  Forgot password?
+                <Link href={ForgotPasswordUrl+search} variant="body2">
+                  {FORGOT_PASSWORD_WHAT}
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="/sign-up" variant="body2">
-                  {"Don't have an account? Sign Up"}
+                <Link href={SignUpUrl+search} variant="body2">
+                  {DONT_HAVE_AN_ACCOUNT}
                 </Link>
               </Grid>
             </Grid>
@@ -165,11 +182,11 @@ const SignIn = (props) => {
   );
 }
 
-function mapStateToProps({ authedUser, users }) {
+function mapStateToProps({ authedUser, users }, props) {
   return {
     authedUser,
     users
   };
 }
 
-export default connect(mapStateToProps)(SignIn);
+export default withRouter(connect(mapStateToProps)(SignIn));

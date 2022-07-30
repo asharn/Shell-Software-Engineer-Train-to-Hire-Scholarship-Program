@@ -17,17 +17,19 @@ import Cancel from '@mui/icons-material/Cancel';
 
 import { IconButton, InputAdornment } from '@mui/material';
 import { connect } from 'react-redux';
-import { useNavigate} from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 
 import { handleSaveUser} from '../actions/users';
 import { setAuthedUser } from '../actions/authedUser';
-import { handleInitialData } from "../actions/shared";
 import {generateRandomProfilePic} from "../utils/generateRandomProfilePic";
+import { RootPathUrl, SignInUrl } from '../utils/PathUrlConstants';
+import { ALREADY_HAVE_AN_ACCOUNT, BUTTON_TEXT_SIGN_UP } from '../utils/GenericConstants';
 
 const theme = createTheme();
 
 const SignUp = (props) => {
   const navigate = useNavigate();
+  const search = useLocation().search;
 
   const [success, setSuccess] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -99,12 +101,12 @@ const SignUp = (props) => {
           ;
           setTimeout(() => res(), 500);
         })
-        //.then(() => props.dispatch(handleInitialData()))
         .then(() => props.dispatch(setAuthedUser(username)))
         .then(() => {
           setSuccess(true);
           setError(false);
-          navigate('/dashboard');
+          const redirectTo = new URLSearchParams(search).get('redirectTo');
+          redirectTo && redirectTo!=='' ? navigate(redirectTo) : navigate(RootPathUrl);
         });
       }else{
         setSuccess(false);
@@ -239,12 +241,12 @@ const SignUp = (props) => {
               variant="contained"
               sx={{ mt: 3, mb: 2 }}
             >
-              Sign Up
+              {BUTTON_TEXT_SIGN_UP}
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="/sign-in" variant="body2">
-                  Already have an account? Sign in
+                <Link href={SignInUrl+search} variant="body2">
+                  {ALREADY_HAVE_AN_ACCOUNT}
                 </Link>
               </Grid>
             </Grid>

@@ -196,7 +196,7 @@ let users = {
 
     } catch (e) {
       //Redux state management is not going to work at this level
-      console.info("New users are not saved to real database, current users in _Data are : ", users, e);
+      console.info("New users are not saved to real database, current users in _Data are : ", Object.keys(users));
     }
   
         resolve(formattedQuestion)
@@ -209,7 +209,6 @@ let users = {
       if (!authedUser || !qid || !answer) {
         reject("Please provide authedUser, qid, and answer");
       }
-      console.log('Users : ', users);
       setTimeout(() => {
         try {
         users = {
@@ -235,7 +234,7 @@ let users = {
         }
       } catch (e) {
         //Redux state management is not going to work at this level
-        console.info("New users are not saved to real database, current users in _Data are : ", users,e);
+        console.info("New users are not saved to real database, current users in _Data are : ", Object.keys(users));
       }
   
         resolve(true)

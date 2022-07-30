@@ -1,7 +1,19 @@
 import { Button, Typography } from '@mui/material';
 import React from 'react';
+import { BUTTON_TEXT_SIGN_IN, YOU_ARE_NOT_AUTHORIZED } from '../utils/GenericConstants';
+import {SignInUrl} from '../utils/PathUrlConstants';
+import { useLocation, useNavigate} from "react-router-dom";
+
   
-const NotAuthorized = () => {
+const NotAuthorized = (props) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log('NotAuthorized component location',location);
+
+  const handleClick = (event) => {
+    event.preventDefault();
+    navigate(SignInUrl+'?redirectTo='+location.pathname);
+};
   return (
     <div
       style={{
@@ -13,10 +25,12 @@ const NotAuthorized = () => {
     >
       <div>
       <Typography variant="h3" color="text.primary" align="center">
-        You are not authorized to visit this page.
+        {YOU_ARE_NOT_AUTHORIZED}
         </Typography>
         <Typography variant="h6" color="text.primary" align="center">
-          Please <Button variant="contained" color='primary' href='/sign-in'>Sign In</Button> to continue.
+          Please <Button variant="contained" color='primary' align="center" onClick={handleClick}>
+                    {BUTTON_TEXT_SIGN_IN}
+                  </Button> to continue.
         </Typography>
       </div>
     </div>

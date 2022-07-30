@@ -8,6 +8,8 @@ import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import { Box, Container, CssBaseline, Grid, ThemeProvider, createTheme, Stack } from "@mui/material";
+import {PathParamId, QuestionWithIdUrl, RootPathUrl} from '../utils/PathUrlConstants'
+import { SHOW, NEW_QUESTION, ANSWERED_QUESTION } from '../utils/GenericConstants';
 
   
 const useStyles = makeStyles(theme => ({
@@ -38,7 +40,7 @@ const QuestionDashBoard = (props) => {
     const handleClick = (event, qid) => {
         event.preventDefault();
         if(qid.trim()!==''){
-            navigate('/question/'+qid);
+            navigate(QuestionWithIdUrl.replace(PathParamId, RootPathUrl + qid));
         }
     };
 
@@ -142,7 +144,7 @@ const QuestionDashBoard = (props) => {
                                                     handleClick(e, qid)
                                                 }}
                                             >
-                                                Show
+                                                {SHOW}
                                             </Button>
                                         </Box>
                                 </CardContent>
@@ -163,8 +165,8 @@ const DashBoard = (props) => {
     const { questionsData } = props;
     return(
         <ThemeProvider theme={theme} >
-            <QuestionDashBoard title='New Question' questions={questionsData.newQuestions} />
-            <QuestionDashBoard title='Answered Question' questions={questionsData.answeredQuestions} />
+            <QuestionDashBoard title={NEW_QUESTION} questions={questionsData.newQuestions} />
+            <QuestionDashBoard title={ANSWERED_QUESTION} questions={questionsData.answeredQuestions} />
         </ThemeProvider>
     )
 }
