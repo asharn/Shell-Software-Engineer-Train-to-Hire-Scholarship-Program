@@ -185,6 +185,7 @@ const SignIn = (props) => {
 function mapStateToProps({ authedUser, users }, props) {
   return {
     authedUser,
+    userLoggedIn: authedUser !== null,
     users
   };
 }

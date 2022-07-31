@@ -10,7 +10,6 @@ import Home from "./Home";
 import NewQuestion from "./NewQuestion";
 import { Routes, Route } from "react-router-dom";
 import PageNotFound from './PageNotFound';
-import NotAuthorized from './NotAuthorized';
 import Copyright from './Copyright';
 import ForgotPassword from './ForgotPassword';
 import QuestionPage from './QuestionPage';
@@ -19,9 +18,7 @@ import * as PathUrlConstants from '../utils/PathUrlConstants'
 
 const App = (props) => {
    useEffect(() => {
-     if(!props.userLoggedIn){
-        props.dispatch(handleInitialData());
-      }
+     props.dispatch(handleInitialData());
    }, [props]);
   return (
       <div className="container">
@@ -45,11 +42,11 @@ const App = (props) => {
             <Route path={PathUrlConstants.RootPathUrl} exact element={<Home />} />
             <Route path={PathUrlConstants.SignInUrl} element={<SignIn/>} />
             <Route path={PathUrlConstants.SignUpUrl} element={<SignUp/>} />
-            <Route path={PathUrlConstants.DashBoardUrl} element={<NotAuthorized />} />
-            <Route path={PathUrlConstants.LeaderBoardUrl} element={<NotAuthorized />} />
-            <Route path={PathUrlConstants.QuestionWithIdUrl} element={<NotAuthorized />} />
+            <Route path={PathUrlConstants.DashBoardUrl} element={<PageNotFound />} />
+            <Route path={PathUrlConstants.LeaderBoardUrl} element={<PageNotFound />} />
+            <Route path={PathUrlConstants.QuestionWithIdUrl} element={<PageNotFound />} />
             <Route path={PathUrlConstants.SignOutUrl} element={<SignIn/>} />
-            <Route path={PathUrlConstants.NewPollUrl} element={<NotAuthorized/>} />
+            <Route path={PathUrlConstants.NewPollUrl} element={<PageNotFound/>} />
             <Route path={PathUrlConstants.OtherThenMapUrl} element={<PageNotFound />} />
             <Route path={PathUrlConstants.ForgotPasswordUrl} element={<ForgotPassword />} />
           </Routes>

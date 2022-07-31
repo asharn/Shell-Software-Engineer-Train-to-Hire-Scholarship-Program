@@ -3,12 +3,13 @@ import React from 'react';
 import { BUTTON_TEXT_SIGN_IN, YOU_ARE_NOT_AUTHORIZED } from '../utils/GenericConstants';
 import {SignInUrl} from '../utils/PathUrlConstants';
 import { useLocation, useNavigate} from "react-router-dom";
+import {connect} from "react-redux";
+
 
   
 const NotAuthorized = (props) => {
   const location = useLocation();
   const navigate = useNavigate();
-  console.log('NotAuthorized component location',location);
 
   const handleClick = (event) => {
     event.preventDefault();
@@ -37,4 +38,6 @@ const NotAuthorized = (props) => {
   );
 };
   
-export default NotAuthorized;
+const mapStateToProps = () => ({});
+
+export default connect(mapStateToProps)(NotAuthorized);

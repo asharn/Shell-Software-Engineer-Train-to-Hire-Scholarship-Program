@@ -3,9 +3,18 @@ import React from 'react';
 import { BUTTON_TEXT_SIGN_IN, HOME } from '../utils/GenericConstants';
 import {SignInUrl, RootPathUrl} from '../utils/PathUrlConstants';
 import { connect } from 'react-redux';
+import { useLocation, useNavigate} from "react-router-dom";
+
 
 
 const PageNotFound = (props) => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleClick = (event, urlToRedirect) => {
+    navigate(urlToRedirect+'?redirectTo='+location.pathname);
+  };
+
   return (
     <div
       style={{
@@ -30,14 +39,14 @@ const PageNotFound = (props) => {
         <Typography variant="h3" color="text.primary" align="center">
           {props.userLoggedIn 
           ? 
-          <Button variant="contained" color='primary' align="center" href={RootPathUrl}>
+          <Button variant="contained" color='primary' align="center"  onClick={(e) => handleClick(e, RootPathUrl)}>
             {HOME}
           </Button>
           : 
-          <Button variant="contained" color='primary' align="center" href={SignInUrl}>
-            {BUTTON_TEXT_SIGN_IN}
-          </Button>}
-        
+          <Button variant="contained" color='primary' align="center" onClick={(e) => handleClick(e, SignInUrl)}>
+                    {BUTTON_TEXT_SIGN_IN}
+          </Button>
+          }
         </Typography>
       </div>
     </div>
@@ -46,6 +55,7 @@ const PageNotFound = (props) => {
   
 function mapStateToProps({ authedUser }) {
   return {
+    authedUser,
     userLoggedIn: authedUser !== null
   };
 }

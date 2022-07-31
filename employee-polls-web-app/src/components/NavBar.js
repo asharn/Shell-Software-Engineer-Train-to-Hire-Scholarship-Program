@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import PollRounded from '@mui/icons-material/PollRounded';
 import {createTheme} from "@mui/material/styles";
-import { useLocation} from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 import { Avatar } from '@mui/material';
 import * as PathUrlConstants from '../utils/PathUrlConstants';
 import {COMPANY_NAME, SIGN_IN, SIGN_UP, SIGN_OUT, HOME, DASHBOARD, LEADERBOARD, NEW} from '../utils/GenericConstants';
@@ -24,13 +24,17 @@ const theme = createTheme({
 
 const NavButton = (props) => {
     return(
-        <Button color='inherit' href={props.href} theme={theme} sx={{
-            ':hover': {
-              bgcolor: 'white', 
-              color: 'black',
-            },            
-            width: '90px',
-          }}>{props.text}</Button>
+        <Link to={props.href} >
+            <Button color='inherit' theme={theme} sx={{
+                ':hover': {
+                bgcolor: 'white', 
+                color: 'black',
+                },           
+                width: '90px',
+            }}>
+                {props.text}
+            </Button>
+        </Link>
     )
 }
 

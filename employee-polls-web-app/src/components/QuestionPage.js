@@ -10,12 +10,12 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { Avatar } from '@mui/material';
 import { handleSaveQuestionAnswer } from '../actions/users';
 import { 
-        NO_MATCH_FOR, 
         WOULD_YOU_RATHER, 
         POLL_BY, 
         BUTTON_TEXT_CLICK_OPTION_ONE, 
         BUTTON_TEXT_CLICK_OPTION_TWO, 
         BUTTON_TEXT_VOTES } from "../utils/GenericConstants";
+import PageNotFound from "./PageNotFound";
 
 
   
@@ -39,35 +39,25 @@ const withRouter = (Component) => {
 };
 
 const QuestionPage = (props) => {
-  let location = useLocation();
+  const { questions, id, users, authedUser, votedFirstOption, voted } = props;
 
-    if(!props.questions[props.id]){
+    if(!questions[id]){
       return (
-        <div style={{
-                  display: 'flex',
-                  justifyContent: 'center',
-                  alignItems: 'center',
-                  height: '80vh'
-                }}>
-          <h3>
-            {NO_MATCH_FOR}<code>{location.pathname}</code>
-          </h3>
-        </div>
+        <PageNotFound></PageNotFound>
       );
     }
 
-    const autherId = props.questions[props.id].author;
-    const avatarURL = props.users[autherId].avatarURL;
-    const name = props.users[autherId].name;
-    const optionFirstCount = props.questions[props.id].optionOne.votes.length;
-    const optionSecondCount = props.questions[props.id].optionTwo.votes.length;
-    const {votedFirstOption, voted} = props;
+    const autherId = questions[id].author;
+    const avatarURL = users[autherId].avatarURL;
+    const name = users[autherId].name;
+    const optionFirstCount = questions[id].optionOne.votes.length;
+    const optionSecondCount = questions[id].optionTwo.votes.length;
  
     const handleClick = (event) => {
         event.preventDefault();
         if(!voted){
           new Promise((res, rej) => {
-            props.dispatch(handleSaveQuestionAnswer(props.authedUser, props.id, event.currentTarget.id));
+            props.dispatch(handleSaveQuestionAnswer(authedUser, id, event.currentTarget.id));
             setTimeout(() => res('success'), 1000);
           }).then(() => {
             console.log("Answer saved successfully.");
@@ -105,7 +95,7 @@ const QuestionPage = (props) => {
                 maxWidth='420px'
                 align='center'
                 style={{ wordWrap: "break-word" }}
-            >{props.questions[props.id].optionOne.text}</Typography>
+            >{questions[id].optionOne.text}</Typography>
             <Button
               style={{marginTop: 'auto', position: 'relative'}}
               type="button"
@@ -115,7 +105,7 @@ const QuestionPage = (props) => {
               id="optionOne"
               color={votedFirstOption ?  "success" : "primary"}
             >
-              {voted?<span>- {Math.round((optionFirstCount / (optionFirstCount+optionSecondCount))*100).toFixed(2)}% {BUTTON_TEXT_VOTES} -</span>:<span>{BUTTON_TEXT_CLICK_OPTION_ONE}</span>}
+              {voted?<span>- {Math.round((optionFirstCount / (optionFirstCount+optionSecondCount))*100)}% {BUTTON_TEXT_VOTES} -</span>:<span>{BUTTON_TEXT_CLICK_OPTION_ONE}</span>}
             </Button>
             </Box>
 
@@ -129,7 +119,7 @@ const QuestionPage = (props) => {
               id="secondOptionText"
               align='center'
               style={{ wordWrap: "break-word" }}
-            >{props.questions[props.id].optionTwo.text}</Typography>
+            >{questions[id].optionTwo.text}</Typography>
             <Button
               style={{marginTop: 'auto', position: 'relative'}}
               type="button"
@@ -139,7 +129,7 @@ const QuestionPage = (props) => {
               id="optionTwo"
               color={(voted && !votedFirstOption) ? "success" : "primary"}
             >
-              {voted?<span>- {Math.round((optionSecondCount/ (optionFirstCount+optionSecondCount))*100).toFixed(2)}% {BUTTON_TEXT_VOTES} -</span>:<span>{BUTTON_TEXT_CLICK_OPTION_TWO}</span>}
+              {voted?<span>- {Math.round((optionSecondCount/ (optionFirstCount+optionSecondCount))*100)}% {BUTTON_TEXT_VOTES} -</span>:<span>{BUTTON_TEXT_CLICK_OPTION_TWO}</span>}
               
             </Button>
             </Box>
@@ -152,6 +142,7 @@ const QuestionPage = (props) => {
 
 const mapStateToProps = ({ authedUser, questions, users }, props) => {
   const { id } = props.router.params;
+  
   const voted =  !!users[authedUser].answers[id];
   return {
     id,
