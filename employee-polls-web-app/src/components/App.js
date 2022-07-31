@@ -15,6 +15,14 @@ import ForgotPassword from './ForgotPassword';
 import QuestionPage from './QuestionPage';
 import DashBoard from './DashBoard';
 import * as PathUrlConstants from '../utils/PathUrlConstants'
+import { useLocation, Navigate} from "react-router-dom";
+
+const NavigateToSignIn = (props) => {
+  const location = useLocation();
+  return(
+    <Navigate to={PathUrlConstants.SignInUrl+'?redirectTo='+location.pathname}/>
+  )
+}
 
 const App = (props) => {
    useEffect(() => {
@@ -42,12 +50,12 @@ const App = (props) => {
             <Route path={PathUrlConstants.RootPathUrl} exact element={<Home />} />
             <Route path={PathUrlConstants.SignInUrl} element={<SignIn/>} />
             <Route path={PathUrlConstants.SignUpUrl} element={<SignUp/>} />
-            <Route path={PathUrlConstants.DashBoardUrl} element={<PageNotFound />} />
-            <Route path={PathUrlConstants.LeaderBoardUrl} element={<PageNotFound />} />
-            <Route path={PathUrlConstants.QuestionWithIdUrl} element={<PageNotFound />} />
+            <Route path={PathUrlConstants.DashBoardUrl} element={<NavigateToSignIn />} />
+            <Route path={PathUrlConstants.LeaderBoardUrl} element={<NavigateToSignIn />} />
+            <Route path={PathUrlConstants.QuestionWithIdUrl} element={<NavigateToSignIn/>} />
             <Route path={PathUrlConstants.SignOutUrl} element={<SignIn/>} />
-            <Route path={PathUrlConstants.NewPollUrl} element={<PageNotFound/>} />
-            <Route path={PathUrlConstants.OtherThenMapUrl} element={<PageNotFound />} />
+            <Route path={PathUrlConstants.NewPollUrl} element={<NavigateToSignIn/>} />
+            <Route path={PathUrlConstants.OtherThenMapUrl} element={<NavigateToSignIn />} />
             <Route path={PathUrlConstants.ForgotPasswordUrl} element={<ForgotPassword />} />
           </Routes>
         )}

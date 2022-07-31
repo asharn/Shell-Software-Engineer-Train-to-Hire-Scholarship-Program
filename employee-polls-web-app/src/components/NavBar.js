@@ -24,13 +24,15 @@ const theme = createTheme({
 
 const NavButton = (props) => {
     return(
-        <Link to={props.href} >
+        <Link to={props.href} style={{ color: 'inherit', textDecoration: 'inherit'}}>
             <Button color='inherit' theme={theme} sx={{
                 ':hover': {
                 bgcolor: 'white', 
                 color: 'black',
                 },           
                 width: '90px',
+                color: 'white',
+
             }}>
                 {props.text}
             </Button>
