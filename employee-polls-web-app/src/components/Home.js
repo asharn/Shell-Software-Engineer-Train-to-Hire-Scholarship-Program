@@ -13,7 +13,7 @@ const Home = () => {
       }}
     >
       <h1>Welcome to Home page of Employee Polls. </h1>
-      <h2>This is public page, so no need to sign in. Anycan can visit.</h2>
+      <h2>This is public page, so no need to sign in. Anyone can visit.</h2>
     </div>
   );
 };
