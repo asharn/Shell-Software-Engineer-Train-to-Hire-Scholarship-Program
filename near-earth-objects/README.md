@@ -2,10 +2,6 @@
 
 In this project, you'll use Python - and the skills we've developed throughout this course - to search for and explore close approaches of near-Earth objects (NEOs), using data from NASA/JPL's Center for Near Earth Object Studies.
 
-When you're finished, it'll look like this:
-
-[gif in action]
-
 ## Overview
 
 At a high-level, you'll create Python code that implements a command-line tool to inspect and query a dataset of NEOs and their close approaches to Earth.
@@ -17,7 +13,7 @@ When complete, you'll be able to inspect the properties of the near-Earth object
 - Occurs on a given date.
 - Occurs on or after a given start date.
 - Occurs on or before a given end date.
-- Approaches Earth at a distance of at least (or at most) X astrononical units.
+- Approaches Earth at a distance of at least (or at most) X astronomical units.
 - Approaches Earth at a relative velocity of at least (or at most) Y kilometers per second.
 - Has a diameter that is at least as large as (or at least as small as) Z kilometers.
 - Is marked by NASA as potentially hazardous (or not).
@@ -39,7 +35,7 @@ Along the way, you'll have to be able to:
 
 It's normal to encounter bugs along the way, so in all likelihood, you'll also gain practice with valuable debugging skills, whether interpreting stack traces, chasing down system errors, handling and raising appropriate errors, walking through code with `pdb`, checking preconditions with `assert`, or simply displaying internal state with `print`.
 
-## Understanding the Near Earth Object Close Approach Datasets
+## Understanding the Near-Earth Object Close Approach Datasets
 
 This project contains two important data sets, and our first step will be to explore and understand the data containing within these structured files.
 
@@ -92,7 +88,7 @@ The data is JSON-formatted, and we've downloaded it from NASA's public API. A de
 
 Let's take an initial look at the data in `cad.json`.
 
-```
+```json
 {
   "signature":{
     "source":"NASA/JPL SBDB Close Approach Data API",
@@ -186,7 +182,7 @@ This project is driven by the `main.py` script. That means that you'll run `pyth
 
 At a command line, you can run `python3 main.py --help` for an explanation of how to invoke the script.
 
-```
+```python
 usage: main.py [-h] [--neofile NEOFILE] [--cadfile CADFILE] {inspect,query,interactive} ...
 
 Explore past and future close approaches of near-Earth objects.
@@ -1048,7 +1044,7 @@ If any of the tests fail, you should fix the causes of error before beginning th
 
 ## Deliverables
 
-Upon completing this project, you'll have modified at least `models.py`, `read.py`, `database.py`, `filters.py`, and `write.py`. If you went above-and-beyond with any Stand Out Suggestions, include your changes alongside an EXTENSIONS.md file describing your changes so that the reviewers can understand what you've done.
+Upon completing this project, you'll have modified at least `database.py`, `extract.py`, `filters.py`, `models.py`, and `write.py`. If you went above-and-beyond with any Stand Out Suggestions, include your changes alongside an EXTENSIONS.md file describing your changes so that the reviewers can understand what you've done.
 
 Over the course of this project (specifically, in Task 4), you've likely created several output files. You should remove these files before submitting your project.
 
