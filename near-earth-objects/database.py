@@ -39,13 +39,21 @@ class NEODatabase:
         :param neos: A collection of `NearEarthObject`s.
         :param approaches: A collection of `CloseApproach`es.
         """
-        self._neos = neos
-        self._approaches = approaches
 
         # TODO: What additional auxiliary data structures will be useful?
 
         # TODO: Link together the NEOs and their close approaches.
-
+        for neo in neos:
+            for approach in approaches:
+                if neo.designation == approach._designation:       
+                       neo.approaches.append(approach)
+                       approach.neo = neo
+                       
+        self._neos = neos
+        self._approaches = approaches
+        #print(self._neos)
+        #print(approaches)
+        
     def get_neo_by_designation(self, designation):
         """Find and return an NEO by its primary designation.
 
@@ -61,7 +69,7 @@ class NEODatabase:
         """
         # TODO: Fetch an NEO by its primary designation.
         for neo in self._neos:
-            if neo._designation == designation:
+            if neo.designation == designation:
                 return neo
         # By default None is returned if not found.
         
