@@ -21,9 +21,9 @@ Visit this [link](https://github.com/asharn/4-months-software-engineer-for-shell
 
 ## List of projects
 Content to view all the projects are listed below:
-  1. [**Image processing API**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/image-processing-api#image-processing-api)
-  2. [**Employee Polls Web App**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/employee-polls-web-app)
-  3. [**Third Project**]()
+  1. [**Image processing API**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/image-processing-api#image-processing-api#readme)
+  2. [**Employee Polls Web App**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/employee-polls-web-app#readme)
+  3. [**Exploring Near-Earth Objects**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/near-earth-objects#readme)
   4. [**Fourth Project**]()
   5. [**Fifth Project**]()
   6. [**Sixth Project**]()
@@ -33,18 +33,26 @@ Content to view all the projects are listed below:
 ## What you will be learned?
 This program contains 6 major projects with a deep concept of node for app development. This course cover topic as:
 
-   1. Backend Development with Node.js
+  1. Welcome to the Software Engineer Nanodegree Program
     In the first course, you learned about developing a node app using Node, jasmine, and configuration middleware server as express, etc.
+    <strong>
+      1. An Introduction to Nanodegree Program
+      2. Getting Help
+    </strong>
+
+  2. Backend Development with Node.js
+    In the second course, you learned about developing a node app using Node, jasmine, and configuration middleware server as express, etc.
     <strong>
       1. Foundations of backend Development
       2. Getting started with Node.js
       3. Developing with Typescript
       4. Unit Testing with Jasmine
       5. Building a server
-      6. Image Processing Api
+      6. Project: Image Processing Api
     </strong>
-   2. React & Redux
-    In the second course, you learned about react and redux in dept.
+
+  3. React & Redux
+    In the third course, you learned about react and redux in dept.
     <strong>
       1. Introduction to the course
       2. Managing State
@@ -54,12 +62,19 @@ This program contains 6 major projects with a deep concept of node for app devel
       6. Asynchronous Redux
       7. React-Redux Binding
       8. Testing with Jest
-      9. Employee Polls Web App Project
+      9. Project: Employee Polls Web App Project
     </strong>
 
-
-   3. In this third course, you learned about the advanced python.
-
+  4. Advanced Python Techniques
+   In this forth course, you learned about the advanced python.
+    <strong>
+      1. Introduction to Advanced Python Techniques
+      2. Representing Data
+      3. Functions and Functional Programming
+      4. Object Oriented Programming
+      5. File I/O
+      6. Project: Exploring Near-Earth Objects
+    </strong>
 
 ## View Certificate
    <object data="certificate.pdf" type="application/pdf" width="700px" height="700px">
