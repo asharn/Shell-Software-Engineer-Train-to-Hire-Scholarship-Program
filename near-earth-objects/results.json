@@ -1,0 +1,145 @@
+[
+  {
+    "datetime_utc": "2020-01-01 00:54",
+    "distance_au": 0.0211660525256395,
+    "velocity_km_s": 5.62203195551878,
+    "neo": {
+      "designation": "2020 AY1",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 02:06",
+    "distance_au": 0.0361009669651545,
+    "velocity_km_s": 7.35926323695148,
+    "neo": {
+      "designation": "2019 YK",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 03:31",
+    "distance_au": 0.162008280404152,
+    "velocity_km_s": 2.79339217149069,
+    "neo": {
+      "designation": "2013 EC20",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 07:18",
+    "distance_au": 0.159657027754696,
+    "velocity_km_s": 4.15293831675084,
+    "neo": {
+      "designation": "2020 AM1",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 08:44",
+    "distance_au": 0.276326257736385,
+    "velocity_km_s": 17.5484457306842,
+    "neo": {
+      "designation": "2016 EF195",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 11:13",
+    "distance_au": 0.016740489928579,
+    "velocity_km_s": 5.19125156562752,
+    "neo": {
+      "designation": "2020 AP3",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 14:36",
+    "distance_au": 0.0643318775843554,
+    "velocity_km_s": 12.790446366754,
+    "neo": {
+      "designation": "2011 YE40",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 14:55",
+    "distance_au": 0.134597422722518,
+    "velocity_km_s": 5.0028249278882,
+    "neo": {
+      "designation": "2019 WE5",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 15:16",
+    "distance_au": 0.237147202802357,
+    "velocity_km_s": 13.298797436931,
+    "neo": {
+      "designation": "2020 AE2",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 21:01",
+    "distance_au": 0.131087507929499,
+    "velocity_km_s": 6.64552237328032,
+    "neo": {
+      "designation": "2020 JU",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": true
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 21:18",
+    "distance_au": 0.020214316165424,
+    "velocity_km_s": 15.352815636266,
+    "neo": {
+      "designation": "2020 AN2",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 21:59",
+    "distance_au": 0.19887863840532,
+    "velocity_km_s": 17.7744595856975,
+    "neo": {
+      "designation": "2011 HS60",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  },
+  {
+    "datetime_utc": "2020-01-01 22:49",
+    "distance_au": 0.0496561819852301,
+    "velocity_km_s": 7.31673540668655,
+    "neo": {
+      "designation": "2020 AX",
+      "name": "",
+      "diameter_km": NaN,
+      "potentially_hazardous": false
+    }
+  }
+]
