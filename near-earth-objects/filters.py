@@ -147,7 +147,7 @@ def limit(iterator, n=None):
     """
     
     # TODO: Produce at most `n` values from the given iterator.
-    return itertools.islice(iterator, n)
+    return iterator if n is None or n is 0 else itertools.islice(iterator, n) 
 
 
 class DateFilter(AttributeFilter):
