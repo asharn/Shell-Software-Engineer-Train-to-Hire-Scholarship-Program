@@ -110,6 +110,8 @@ def create_filters(
     :return: A collection of filters for use with `query`.
     """
     # DONE: Decide how you will represent your filters.
+    # Implemented with checking if filter is not NONE then create a list of filter
+    # For hazardous explicitly add `is not None`` to handle default true for `None or False``
     filters=[]
     
     if date:
@@ -147,6 +149,7 @@ def limit(iterator, n=None):
     """
     
     # DONE: Produce at most `n` values from the given iterator.
+    # Slicing has been done `if n is not `0 or None` else return same iterator
     return iterator if n is None or n is 0 else itertools.islice(iterator, n) 
 
 

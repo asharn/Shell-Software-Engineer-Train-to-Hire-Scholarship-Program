@@ -32,8 +32,8 @@ class NearEarthObject:
     initialized to an empty collection, but eventually populated in the
     `NEODatabase` constructor.
     """
-    # DONE: How can you, and should you, change the arguments to this constructor?
-    # If you make changes, be sure to update the comments in this file.
+    # DONE: How can you, and should you, change the arguments to this constructor? - Not Required
+    # If you make changes, be sure to update the comments in this file. - Not Required
     def __init__(self, **info):
         """Create a new `NearEarthObject`.
 
@@ -44,7 +44,7 @@ class NearEarthObject:
         # You should coerce these values to their appropriate data type and
         # handle any edge cases, such as a empty name being represented by `None`
         # and a missing diameter being represented by `float('nan')`.
-        # All above task is completed.
+        # All of the above tasks are completed.
         self.designation = info.get('pdes')
         self.name = info.get('name')
         self.diameter = float(info.get('diameter', 'nan')) 
@@ -57,6 +57,8 @@ class NearEarthObject:
     def fullname(self):
         """Return a representation of the full name of this NEO."""
         # DONE: Use self.designation and self.name to build a fullname for this object.
+        # string concatenation of self.designation, ' ' and self.name is done only when both fields have valid value.
+        # else only self.designation is return
         return f"{self.designation} ({self.name})" if self.designation and self.name else f"{self.designation}"
 
     def __str__(self):
@@ -96,8 +98,8 @@ class CloseApproach:
     private attribute, but the referenced NEO is eventually replaced in the
     `NEODatabase` constructor.
     """
-    # DONE: How can you, and should you, change the arguments to this constructor?
-    # If you make changes, be sure to update the comments in this file.
+    # DONE: How can you, and should you, change the arguments to this constructor? - Not Required
+    # If you make changes, be sure to update the comments in this file. - Not Required
     def __init__(self, **info):
         """Create a new `CloseApproach`.
 
@@ -107,7 +109,7 @@ class CloseApproach:
         # onto attributes named `_designation`, `time`, `distance`, and `velocity`.
         # You should coerce these values to their appropriate data type and handle any edge cases.
         # The `cd_to_datetime` function will be useful.
-        # All task completed.
+        # All of the above tasks are completed.
         self._designation = info.get('des')
         self.time = cd_to_datetime(info.get('cd'))  # DONE: Use the cd_to_datetime function for this attribute.
         self.distance = float(info.get('dist', 0.0))
@@ -131,7 +133,6 @@ class CloseApproach:
         """
         # DONE: Use this object's `.time` attribute and the `datetime_to_str` function to
         # build a formatted representation of the approach time.
-        # DONE: Use self.designation and self.name to build a fullname for this object.
         return datetime_to_str(self.time)
 
     def __str__(self):

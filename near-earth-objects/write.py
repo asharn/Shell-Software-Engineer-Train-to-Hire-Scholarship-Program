@@ -29,6 +29,7 @@ def write_to_csv(results, filename):
         'designation', 'name', 'diameter_km', 'potentially_hazardous'
     )
     # DONE: Write the results to a CSV file, following the specification in the instructions.
+    # Command line query result will be save to CSV file with respective header.
     with open(filename, 'w') as outfile:
         writer = csv.DictWriter(outfile, fieldnames)
         writer.writeheader()
@@ -49,5 +50,6 @@ def write_to_json(results, filename):
     :param filename: A Path-like object pointing to where the data should be saved.
     """
     # DONE: Write the results to a JSON file, following the specification in the instructions.
+    # Command line query results will be dump to json file with respective format of list of dict.
     with open(filename, 'w') as outfile:
         json.dump([result.serialize() for result in results], outfile, indent=2)
