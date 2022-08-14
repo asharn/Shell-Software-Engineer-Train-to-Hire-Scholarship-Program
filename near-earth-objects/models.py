@@ -74,6 +74,7 @@ class NearEarthObject:
                f"diameter={self.diameter:.3f}, hazardous={self.hazardous!r})"
 
     def serialize(self):
+        """Return `serialization(self)`, a dict format of user defined keys."""
         return {
             "designation": self.designation,
             "name": self.name if self.name is not None else '',
@@ -149,6 +150,7 @@ class CloseApproach:
     
     
     def serialize(self):
+        """Return `serialization(self)`, a dict format of user defined keys."""
         return {
             "datetime_utc": self.time_str,
             "distance_au": self.distance,
@@ -157,6 +159,7 @@ class CloseApproach:
         }
         
     def toCSVRow(self):
+        """Return `repr(self)`, a dict format of user defined keys to write in csv file."""
         return {
                     "datetime_utc": self.time_str,
                     "distance_au": self.distance,

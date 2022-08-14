@@ -151,26 +151,41 @@ def limit(iterator, n=None):
 
 
 class DateFilter(AttributeFilter):
+    """Create a date filter on topup AttributeFilter.
+    If atrribute is date or start-date and end-date then this filter will be used.
+    """
     @classmethod
     def get(cls, approach):
         return approach.time.date()
     
 class DistanceFilter(AttributeFilter):
+    """Create a distance filter on topup AttributeFilter.
+    If atrribute is distance_min or distance_max then this filter will be used.
+    """
     @classmethod
     def get(cls, approach):
         return approach.distance
 
 class VelocityFilter(AttributeFilter):
+    """Create a velocity filter on topup AttributeFilter.
+    If atrribute is velocity_min or velocity_max then this filter will be used.
+    """
     @classmethod
     def get(cls, approach):
         return approach.velocity
     
 class DiameterFilter(AttributeFilter):
+    """Create a diameter filter on topup AttributeFilter.
+    If atrribute is diameter_min or diameter_max then this filter will be used.
+    """
     @classmethod
     def get(cls, approach):
         return approach.neo.diameter
      
 class HazardousFilter(AttributeFilter):
+    """Create a hazardous filter on topup AttributeFilter.
+    If atrribute is hazardous then this filter will be used.
+    """
     @classmethod
     def get(cls, approach):
         return approach.neo.hazardous
