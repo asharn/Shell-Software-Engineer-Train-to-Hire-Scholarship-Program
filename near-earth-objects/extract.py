@@ -29,13 +29,12 @@ def load_neos(neo_csv_path='data/neos.csv'):
     # and required data map to respective fields.
     neo = []
     with open(neo_csv_path, 'r') as csv_file:
-        reader = csv.reader(csv_file)
-        next(reader)  # Skip the header line.
+        reader = csv.DictReader(csv_file)
         for row in reader:
-            nearEarthObject = NearEarthObject(pdes=row[3],
-                                              name=row[4] if row[4] != '' else None,
-                                              pha=row[7],
-                                              diameter=float(row[15]) if row[15] != '' else float('nan'))
+            nearEarthObject = NearEarthObject(pdes=row['pdes'],
+                                              name=row['name'] if row['name'] != '' else None,
+                                              pha=row['pha'],
+                                              diameter=float(row['diameter']) if row['diameter'] != '' else float('nan'))
             neo.append(nearEarthObject)
     return neo
 

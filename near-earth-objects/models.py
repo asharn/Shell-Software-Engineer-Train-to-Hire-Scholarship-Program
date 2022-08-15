@@ -48,7 +48,10 @@ class NearEarthObject:
         # All of the above tasks are completed.
         self.designation = info.get('pdes')
         self.name = info.get('name')
-        self.diameter = float(info.get('diameter', 'nan'))
+        try:
+            self.diameter = float(info.get('diameter', 'nan'))
+        except ValueError:
+            self.diameter = float('nan')
         self.hazardous = True if info.get('pha', 'N') == 'Y' else False
 
         # Create an empty initial collection of linked approaches.
@@ -113,8 +116,14 @@ class CloseApproach:
         # All of the above tasks are completed.
         self._designation = info.get('des')
         self.time = cd_to_datetime(info.get('cd'))  # DONE: Use the cd_to_datetime function for this attribute.
-        self.distance = float(info.get('dist', 0.0))
-        self.velocity = float(info.get('v_rel', 0.0))
+        try:
+            self.distance = float(info.get('dist', 0.0))
+        except ValueError:
+            self.diameter = float(0.0)
+        try:
+            self.velocity = float(info.get('v_rel', 0.0))
+        except ValueError:
+            self.velocity = float(0.0)
 
         # Create an attribute for the referenced NEO, originally None.
         self.neo = info.get('neo')
