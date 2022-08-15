@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Connecting Your App to Storage</title>
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+      name="viewport"
+    />
+    <link rel="stylesheet" type="text/css" href="../static/main.css"/>
+  </head>
+
+  <body>
+  <div class = "container">
+    <div class="header box">UdaciZoo</div>
+    <div class="content box">
+      <div class="flex-container">
+        {% for animal in animals %}
+        <div class="animal">
+          <h3>{{ animal.name }}</h3>
+          {% if animal.image_path %}
+            <img src="{{ imageSource + animal.image_path }}"/><br>
+            <form action="/animal/{{ animal.id }}">
+              <input type="submit" value="Edit Image" />
+            </form>
+          {% else %}
+            <form action="/animal/{{ animal.id }}">
+              <input type="submit" value="Add Image" />
+            </form>           
+          {% endif %}
+          <p>
+            <i>{{ animal.scientific_name }}</i><br>
+            {{ animal.description }}<br>
+          </p>
+        </div>
+      {% endfor %}
+      </div>
+    </div>
+    <div class="footer box">Copyright 2020 Udacious Student</div>
+  </div>
+  </body>
+</html>

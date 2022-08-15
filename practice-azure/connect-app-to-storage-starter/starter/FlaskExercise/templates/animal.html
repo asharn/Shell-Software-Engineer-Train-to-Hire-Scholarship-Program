@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Connecting Your App to Storage</title>
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+      name="viewport"
+    />
+    <link rel="stylesheet" type="text/css" href="../static/main.css"/>
+  </head>
+
+  <body>
+    <h2>{{ animal.name }}</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+      {{ form.csrf_token }}
+      {% if form.image_path.data %}
+        <p><img src="{{ imageSource + form.image_path.data }}" width="250" height="250" /></p>
+        <p>Edit Image</p>
+      {% else %}
+        <p>Add Image</p>
+      {% endif %}
+      <p>
+        {{ form.image_path }}<br>
+        <p>{{ form.submit() }}</p><br>
+        {% for error in form.image_path.errors %}
+          <span style="color: red;">{{ error.join(form.image_path.errors) }}</span>
+        {% endfor %}
+      </p>
+    </form>
+
+    <form action="/">
+      <input type="submit" value="Go back" />
+    </form>  
+ </body>
+
+</html>

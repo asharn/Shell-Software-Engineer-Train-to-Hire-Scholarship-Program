@@ -1,0 +1,42 @@
+html {
+  font-family: OpenSans, sans-serif;
+  color: #fff;
+}
+
+body {
+  background: #02B3E4;
+}
+img {
+  border-radius: 8px;
+  height:150px;
+  width:150px;
+}
+.container {
+  display:grid;
+  grid-gap: 20px;
+  grid-template-areas: 
+  "hd hd hd"
+  "main main main"
+  "ft ft ft";
+}
+.flex-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.header {
+  grid-area: hd;
+  text-align: center;
+  font-size: 32px;
+}
+.footer {
+  grid-area: ft;
+  text-align: center;
+}
+.content {
+  grid-area: main;
+}
+.animal {
+  max-width: 200px;
+  margin: 20px;
+  text-align: center;
+}
