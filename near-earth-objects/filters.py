@@ -22,7 +22,7 @@ import itertools
 
 class UnsupportedCriterionError(NotImplementedError):
     """A filter criterion is unsupported."""
-    
+
 
 class AttributeFilter:
     """A general superclass for filters on comparable attributes.
@@ -39,6 +39,7 @@ class AttributeFilter:
     Concrete subclasses can override the `get` classmethod to provide custom
     behavior to fetch a desired attribute from the given `CloseApproach`.
     """
+
     def __init__(self, op, value):
         """Construct a new `AttributeFilter` from an binary predicate and a reference value.
 
@@ -70,6 +71,11 @@ class AttributeFilter:
         raise UnsupportedCriterionError
 
     def __repr__(self):
+        """Help to create string format of requested class `AttributeFilter`.
+
+        Returns:
+            str: return a printable representation of an object `AttributeFilter`
+        """
         return f"{self.__class__.__name__}(op=operator.{self.op.__name__}, value={self.value})"
 
 
@@ -112,8 +118,7 @@ def create_filters(
     # DONE: Decide how you will represent your filters.
     # Implemented with checking if filter is not NONE then create a list of filter
     # For hazardous explicitly add `is not None`` to handle default true for `None or False``
-    filters=[]
-    
+    filters = []
     if date:
         filters.append(DateFilter(operator.eq, date))
     if start_date:
@@ -134,7 +139,6 @@ def create_filters(
         filters.append(DiameterFilter(operator.le, diameter_max))
     if hazardous is not None:
         filters.append(HazardousFilter(operator.eq, hazardous))
-    
     return tuple(filters)
 
 
@@ -147,48 +151,101 @@ def limit(iterator, n=None):
     :param n: The maximum number of values to produce.
     :yield: The first (at most) `n` values from the iterator.
     """
-    
     # DONE: Produce at most `n` values from the given iterator.
     # Slicing has been done `if n is not `0 or None` else return same iterator
-    return iterator if n is None or n is 0 else itertools.islice(iterator, n) 
+    return iterator if n is None or n == 0 else itertools.islice(iterator, n)
 
 
 class DateFilter(AttributeFilter):
     """Create a date filter on topup AttributeFilter.
+
     If atrribute is date or start-date and end-date then this filter will be used.
     """
+
     @classmethod
     def get(cls, approach):
+        """Help to get relevant date value.
+
+        Args:
+            approach (CloseApproach): Relevant approach to apply DateFilter.
+
+        Returns:
+            datetime: fetch date from requested approach
+        """
         return approach.time.date()
-    
+
+
 class DistanceFilter(AttributeFilter):
     """Create a distance filter on topup AttributeFilter.
+
     If atrribute is distance_min or distance_max then this filter will be used.
     """
+
     @classmethod
     def get(cls, approach):
+        """Help to get relevant distance value.
+
+        Args:
+            approach (CloseApproach): Relevant approach to apply DistanceFilter.
+
+        Returns:
+            float: fetch distance from requested approach
+        """
         return approach.distance
+
 
 class VelocityFilter(AttributeFilter):
     """Create a velocity filter on topup AttributeFilter.
+
     If atrribute is velocity_min or velocity_max then this filter will be used.
     """
+
     @classmethod
     def get(cls, approach):
+        """Help to get relevant velocity value.
+
+        Args:
+            approach (CloseApproach): Relevant approach to apply VelocityFilter.
+
+        Returns:
+            float: fetch velocity from requested approach
+        """
         return approach.velocity
-    
+
+
 class DiameterFilter(AttributeFilter):
     """Create a diameter filter on topup AttributeFilter.
+
     If atrribute is diameter_min or diameter_max then this filter will be used.
     """
+
     @classmethod
     def get(cls, approach):
+        """Help to get relevant diameter value.
+
+        Args:
+            approach (CloseApproach): Relevant approach to apply DiameterFilter.
+
+        Returns:
+            float: fetch diameter of neo of requested approach
+        """
         return approach.neo.diameter
-     
+
+
 class HazardousFilter(AttributeFilter):
     """Create a hazardous filter on topup AttributeFilter.
+
     If atrribute is hazardous then this filter will be used.
     """
+
     @classmethod
     def get(cls, approach):
+        """Help to get relevant hazardous value.
+
+        Args:
+            approach (CloseApproach): Relevant approach to apply HazardousFilter.
+
+        Returns:
+            bool: is hazardous or is not hazardous
+        """
         return approach.neo.hazardous

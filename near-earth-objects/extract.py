@@ -25,15 +25,18 @@ def load_neos(neo_csv_path='data/neos.csv'):
     :return: A collection of `NearEarthObject`s.
     """
     # DONE: Load NEO data from the given CSV file.
-    # Loading of content from CSV file completed 
+    # Loading of content from CSV file completed
     # and required data map to respective fields.
     neo = []
     with open(neo_csv_path, 'r') as csv_file:
         reader = csv.reader(csv_file)
         next(reader)  # Skip the header line.
         for row in reader:
-            nearEarthObject = NearEarthObject(pdes=row[3],name=row[4] if row[4] != '' else None,pha=row[7],diameter=float(row[15]) if row[15] != '' else float('nan'))
-            neo.append(nearEarthObject)        
+            nearEarthObject = NearEarthObject(pdes=row[3],
+                                              name=row[4] if row[4] != '' else None,
+                                              pha=row[7],
+                                              diameter=float(row[15]) if row[15] != '' else float('nan'))
+            neo.append(nearEarthObject)
     return neo
 
 
@@ -44,11 +47,11 @@ def load_approaches(cad_json_path='data/cad.json'):
     :return: A collection of `CloseApproach`es.
     """
     # DONE: Load close approach data from the given JSON file.
-    # Loading of content from JSON file completed 
+    # Loading of content from JSON file completed
     # and required data map to respective fields.
     ca = []
     with open(cad_json_path, 'r') as json_file:
-        contents = json.load(json_file) 
+        contents = json.load(json_file)
         for data in contents['data']:
             closeApproach = CloseApproach(des=data[0], cd=data[3], dist=float(data[4]) if data[4] != '' else 0.0, v_rel=float(data[7]) if data[7] != '' else 0.0)
             ca.append(closeApproach)

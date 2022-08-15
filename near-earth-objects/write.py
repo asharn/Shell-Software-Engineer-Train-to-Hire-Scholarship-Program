@@ -37,7 +37,6 @@ def write_to_csv(results, filename):
             writer.writerow(elem.toCSVRow())
 
 
-
 def write_to_json(results, filename):
     """Write an iterable of `CloseApproach` objects to a JSON file.
 

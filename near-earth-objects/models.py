@@ -32,6 +32,7 @@ class NearEarthObject:
     initialized to an empty collection, but eventually populated in the
     `NEODatabase` constructor.
     """
+
     # DONE: How can you, and should you, change the arguments to this constructor? - Not Required
     # If you make changes, be sure to update the comments in this file. - Not Required
     def __init__(self, **info):
@@ -47,11 +48,11 @@ class NearEarthObject:
         # All of the above tasks are completed.
         self.designation = info.get('pdes')
         self.name = info.get('name')
-        self.diameter = float(info.get('diameter', 'nan')) 
-        self.hazardous = True if info.get('pha','N') == 'Y' else False
+        self.diameter = float(info.get('diameter', 'nan'))
+        self.hazardous = True if info.get('pha', 'N') == 'Y' else False
 
         # Create an empty initial collection of linked approaches.
-        self.approaches = info.get('ca',[])
+        self.approaches = info.get('ca', [])
 
     @property
     def fullname(self):
@@ -69,7 +70,6 @@ class NearEarthObject:
         # This task is completed.
         return f"NEO {self.fullname} has a diameter of {self.diameter:.3f} km and {'is' if self.hazardous else 'is not'} potentially hazardous."
 
-
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return f"NearEarthObject(designation={self.designation!r}, name={self.name!r}, " \
@@ -82,9 +82,9 @@ class NearEarthObject:
             "name": self.name if self.name is not None else '',
             "diameter_km": float(self.diameter),
             "potentially_hazardous": self.hazardous
-        }        
-        
-        
+        }
+
+
 class CloseApproach:
     """A close approach to Earth by an NEO.
 
@@ -98,6 +98,7 @@ class CloseApproach:
     private attribute, but the referenced NEO is eventually replaced in the
     `NEODatabase` constructor.
     """
+
     # DONE: How can you, and should you, change the arguments to this constructor? - Not Required
     # If you make changes, be sure to update the comments in this file. - Not Required
     def __init__(self, **info):
@@ -143,13 +144,11 @@ class CloseApproach:
         return f"At {self.time_str}, '{self.neo.fullname}' approaches Earth " \
                f"at a distance of {self.distance:.2f} au and a velocity of {self.velocity:.2f} km/s."
 
-
     def __repr__(self):
         """Return `repr(self)`, a computer-readable string representation of this object."""
         return f"CloseApproach(time={self.time_str!r}, distance={self.distance:.2f}, " \
                f"velocity={self.velocity:.2f}, neo={self.neo!r})"
-    
-    
+
     def serialize(self):
         """Return `serialization(self)`, a dict format of user defined keys."""
         return {
@@ -158,7 +157,7 @@ class CloseApproach:
             "velocity_km_s": self.velocity,
             "neo": self.neo.serialize()
         }
-        
+
     def toCSVRow(self):
         """Return `repr(self)`, a dict format of user defined keys to write in csv file."""
         return {

@@ -21,7 +21,8 @@ Visit this [link](https://github.com/asharn/4-months-software-engineer-for-shell
 
 ## List of projects
 Content to view all the projects are listed below:
-  1. [**Image processing API**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/image-processing-api#image-processing-api#readme)
+  1. [**Image processing API**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/
+  image-processing-api#readme)
   2. [**Employee Polls Web App**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/employee-polls-web-app#readme)
   3. [**Exploring Near-Earth Objects**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/near-earth-objects#readme)
   4. [**Fourth Project**]()
