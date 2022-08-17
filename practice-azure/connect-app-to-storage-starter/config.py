@@ -8,7 +8,7 @@ class Config(object):
     SQL_DATABASE = os.environ.get('SQL_DATABASE') or 'hello-world-db'
     SQL_USER_NAME = os.environ.get('SQL_USER_NAME') or 'azureadmin'
     SQL_PASSWORD = os.environ.get('SQL_PASSWORD') or 'game@123over'
-    SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE + '?driver=ODBC+Driver+17+for+SQL+Server'
+    SQLALCHEMY_DATABASE_URI = 'mssql+pyodbc://' + SQL_USER_NAME + '@' + SQL_SERVER + ':' + SQL_PASSWORD + '@' + SQL_SERVER + ':1433/' + SQL_DATABASE + '?driver=ODBC+Driver+18+for+SQL+Server'
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     BLOB_ACCOUNT = os.environ.get('BLOB_ACCOUNT') or 'helloworldstorageacc'
