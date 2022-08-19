@@ -13,7 +13,6 @@ def home():
         elif log == 'error':
             app.logger.error('Error occurred.')
         elif log == 'critical':
-            print('cr')
             app.logger.critical('Critical error occurred.')
     return render_template(
         'index.html',
