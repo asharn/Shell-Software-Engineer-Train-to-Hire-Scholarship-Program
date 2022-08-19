@@ -16,7 +16,7 @@ exports[`Snapshot testing for Home component. renders Home component with toMatc
     Welcome to Home page of Employee Polls. 
   </h1>
   <h2>
-    This is public page, so no need to sign in. Anycan can visit.
+    This is public page, so no need to sign in. Anyone can visit.
   </h2>
 </div>
 `;
