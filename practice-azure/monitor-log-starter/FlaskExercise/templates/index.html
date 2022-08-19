@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Monitoring & Logging</title>
+    <meta
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+      name="viewport"
+    />
+    <link rel="stylesheet" type="text/css" href="../static/main.css"/>
+  </head>
+
+  <body>
+    <div class = "container">
+      <div class="header box">Logging Center</div>
+      <div class="content box">
+        {% if log %}
+          <p>{{ log }}</p>
+        {% endif %}
+        <form action="/">
+          <input type="submit" name="log_button" value="info">
+          <input type="submit" name="log_button" value="warning">
+          <input type="submit" name="log_button" value="error">
+          <input type="submit" name="log_button" value="critical">
+        </form>
+      </div>
+      <div class="footer box">Copyright 2020 Udacious Student</div>
+    </div>
+  </body>
+</html>
