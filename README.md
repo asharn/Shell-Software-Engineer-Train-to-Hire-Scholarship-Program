@@ -21,11 +21,10 @@ Visit this [link](https://github.com/asharn/4-months-software-engineer-for-shell
 
 ## List of projects
 Content to view all the projects are listed below:
-  1. [**Image processing API**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/
-  image-processing-api#readme)
+  1. [**Image processing API**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/image-processing-api#readme)
   2. [**Employee Polls Web App**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/employee-polls-web-app#readme)
   3. [**Exploring Near-Earth Objects**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/near-earth-objects#readme)
-  4. [**Fourth Project**]()
+  4. [**Deploy An Article CMS to Azure**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/blob/main/deploy-an-article-cms-to-azure#readme)
   5. [**Fifth Project**]()
   6. [**Sixth Project**]()
   7. [**Seventh Project**]()
@@ -75,6 +74,17 @@ This program contains 6 major projects with a deep concept of node for app devel
       4. Object Oriented Programming
       5. File I/O
       6. Project: Exploring Near-Earth Objects
+    </strong>
+
+  5. Advanced Python Techniques
+   In this forth course, you learned about the advanced python.
+    <strong>
+      1. Getting Started - Azure Setup
+      2. Introduction to Microsoft Azure Development
+      3. Azure Compute Services
+      4. Azure Storage
+      5. Security and Monitoring Basics
+      6. Project: Deploy An Article CMS to Azure
     </strong>
 
 ## View Certificate

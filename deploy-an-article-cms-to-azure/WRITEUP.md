@@ -1,11 +1,9 @@
-# Write-up Template
+# Write-up on choosing appropriate Azure resource
 
 ## Analyze, choose, and justify the appropriate resource option for deploying the app.
 
-*For **both** a VM or App Service solution for the CMS app:*
-- *Analyze costs, scalability, availability, and workflow*
-- *Choose the appropriate solution (VM or App Service) for deploying the app*
-- *Justify your choice*
+    Find below analysis of choosing azure resourses with concerning different factors.
+
 ### Analysis on features of this application
 
 1. This flask based CMS application is built new, means there is a choice of hosting it in many of the compute options such as VM, Azure app services, container, microservice, AKS, etc.

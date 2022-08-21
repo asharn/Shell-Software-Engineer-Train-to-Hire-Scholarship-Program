@@ -9,7 +9,7 @@ This project is a Python web application built using Flask. The user can log in 
 
 Or, once the MS Login button is implemented, it will automatically log into the `admin` account.
 
-## Project Instructions (For Student)
+## Project Instructions (For Learner)
 
 You are expected to do the following to complete this project:
 1. Create a Resource Group in Azure.
@@ -32,20 +32,40 @@ You are expected to do the following to complete this project:
 9. Take a screenshot of the Redirect URIs entered for your registered app, related to the MS Login button.
 10. Take a screenshot of your logs (can be from the Log stream in Azure) showing logging from an attempt to sign in with an invalid login, as well as a valid login.
 
-## example_images Folder
+## app_screenshots Folder
 
-This folder contains sample screenshots that students are required to submit in order to prove they completed various tasks throughout the project.
+This folder contains sample screenshots that I have taken to submit in order to prove they completed various tasks throughout the project.
 
-1. article-cms-solution.png is a screenshot from running the FlaskWebProject on Azure and prove that the student was able to create a new entry. The Title, Author, and Body fields must be populated to prove that the data is being retrieved from the Azure SQL Database while the image on the right proves that an image was uploaded and pulled from Azure Blob Storage.
-2. azure-portal-resource-group.png is a screenshot from the Azure Portal showing all of the contents of the Resource Group the student needs to create. The resource group must (at least) contain the following:
+1. **log-of-invalid-and-valid-login.png** is a screenshot showing one potential form of logging with an "Invalid login attempt" and "User logged in successfully", taken from the app's Log stream. 
+<img src="app_screenshots/log-of-invalid-and-valid-login.png" width="820px">
+
+2. **resource-group-with-all-resources.png** is a screenshot from the Azure Portal showing all of the contents of the Resource Group the student needs to create. The resource group must (at least) contain the following:
 	- Storage Account
 	- SQL Server
 	- SQL Database
 	- Resources related to deploying the app
-3. sql-storage-solution.png is a screenshot showing the created tables and one query of data from the initial scripts.
-4. blob-solution.png is a screenshot showing an example of blob endpoints for where images are sent for storage.
-5. uri-redirects-solution.png is a screenshot of the redirect URIs related to Microsoft authentication.
-6. log-solution.png is a screenshot showing one potential form of logging with an "Invalid login attempt" and "admin logged in successfully", taken from the app's Log stream. You can customize your log messages as you see fit for these situations.
+<img src="app_screenshots/resource-group-with-all-resources.png" width="820px">
+
+3. **database-with-tables.png** is a screenshot showing the created tables and one query of data from the initial scripts.
+<img src="app_screenshots/database-with-tables.png" width="820px">
+
+4. **storage-to-store-image-as-blob.png** is a screenshot showing an example of blob endpoints for where images are sent for storage.
+<img src="app_screenshots/storage-to-store-image-as-blob.png" width="820px">
+
+5. **storage-blob-properties.png** is a screenshot showing an properties of storage as blob with details related to storage blob.
+<img src="app_screenshots/storage-blob-properties.png" width="820px">
+
+6. **deployed-app-with-home-page.png** is a screenshot showing app is live with home page showing list of articles with details.
+<img src="app_screenshots/deployed-app-with-home-page.png" width="820px">
+
+7. **deployed-app-with-edit-article-page.png** is a screenshot from running the FlaskWebProject on Azure and prove that I were able to create a new entry. The Title, Author, and Body fields must be populated to prove that the data is being retrieved from the Azure SQL Database while the image on the right proves that an image was uploaded and pulled from Azure Blob Storage.
+<img src="app_screenshots/deployed-app-with-edit-article-page.png" width="820px">
+
+8. **deployed-app-with-ms-auth-redirect-page.png** is a screenshot of the redirect URIs related to Microsoft authentication and on there portal.
+<img src="app_screenshots/deployed-app-with-ms-auth-redirect-page.png" width="820px">
+
+9. **endpoints-for-redirect-uri.png** is a screenshot of the redirect URIs related to Microsoft authentication on seperate tenate | Authentication.
+<img src="app_screenshots/endpoints-for-redirect-uri.png" width="820px">
 
 ## Dependencies
 
