@@ -111,7 +111,7 @@ def logout():
         # Also logout from your tenant's web session
         return redirect(
             Config.AUTHORITY + "/oauth2/v2.0/logout" +
-            "?post_logout_redirect_uri=" + url_for("login", _external=True))
+            "?post_logout_redirect_uri=" + url_for("login", _external=True, _scheme='https'))
 
     return redirect(url_for('login'))
 
@@ -120,7 +120,6 @@ def _load_cache():
     cache = msal.SerializableTokenCache()
     if session.get('token_cache'):
         cache.deserialize(session['token_cache'])
-    return cache
     return cache
 
 def _save_cache(cache):
