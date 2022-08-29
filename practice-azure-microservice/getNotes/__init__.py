@@ -1,24 +1,24 @@
-import logging
 
 import azure.functions as func
-
+import pymongo
+import os
+import json
+from bson.json_util import dumps
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
 
-    name = req.params.get('name')
-    if not name:
-        try:
-            req_body = req.get_json()
-        except ValueError:
-            pass
-        else:
-            name = req_body.get('name')
+    try:
+        url = os.environ["MyDbConnection"] # Change the Variable name, as applicable to you
+        client = pymongo.MongoClient(url)
+        database = client['lab2db'] # Change the MongoDB name
+        collection = database['notes']    # Change the collection name
 
-    if name:
-        return func.HttpResponse(f"Hello, {name}. This HTTP triggered function executed successfully.")
-    else:
-        return func.HttpResponse(
-             "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body for a personalized response.",
-             status_code=200
-        )
+
+        result = collection.find({})
+        result = dumps(result)
+
+        return func.HttpResponse(result, mimetype="application/json", charset='utf-8')
+    except ConnectionError:
+        print("could not connect to mongodb")
+        return func.HttpResponse("could not connect to mongodb",
+                                 status_code=400)
