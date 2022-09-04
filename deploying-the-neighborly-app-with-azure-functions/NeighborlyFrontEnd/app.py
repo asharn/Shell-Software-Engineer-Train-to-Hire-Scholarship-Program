@@ -1,5 +1,8 @@
+from datetime import date, datetime
 import logging.config
 import os
+from sqlite3 import Date
+from weakref import ref
 from flask import Flask, Blueprint, request, jsonify, render_template, redirect, url_for
 from flask_bootstrap import Bootstrap
 import settings
@@ -21,24 +24,25 @@ def get_abs_url(url):
 
 @app.route('/feeds/')
 def feeds():
-    # feed = AtomFeed(title='All Advertisements feed',
-    #                 feed_url=request.url, url=request.url_root)
+    fg = FeedGenerator()
+    fg.title('Feed title')
+    fg.id('Feed id')
+    fg.link(href=settings.API_URL+'/feeds', rel='alternate')
+    
 
     response = requests.get(settings.API_URL + '/getAdvertisements')
-    posts = response.json()
+    ads = response.json()
+    print(ads)
+    for a in ads: 
+        fe = fg.add_entry()
+        fe.title(a['title'])
+        fe.id(a['_id']['$oid'])
+        fe.link(href=settings.API_URL+'/getAdvertisement?id='+ a['_id']['$oid'])
+        fe.updated(datetime.now().astimezone())
 
-    for post in posts:
-        print("Post is : " , post)
-
-    #     feed.add(post.title,
-    #              content_type='html',
-    #              author= post.author_name,
-    #              url=get_abs_url(post.url),
-    #              updated=post.mod_date,
-    #              published=post.created_date)
-
-    # return feed.get_response()
-    return posts
+    response = make_response(fg.atom_str(pretty=True))
+    response.headers.set('Content-Type', 'application/atom+xml')
+    return response
 
 
 @app.route('/rss')
@@ -46,18 +50,18 @@ def rss():
     fg = FeedGenerator()
     fg.title('Feed title')
     fg.description('Feed Description')
-    fg.link(href='https://neighborly-client-v1.azurewebsites.net/')
+    fg.link(href=settings.API_URL+'/rss')
     
 
     response = requests.get(settings.API_URL + '/getAdvertisements')
     ads = response.json()
-
+    print(ads)
     for a in ads: 
         fe = fg.add_entry()
-        fe.title(a.title)
-        fe.description(a.description)
+        fe.title(a['title'])
+        fe.description(a['description'])
 
-    response = make_response(fg.rss_str())
+    response = make_response(fg.rss_str(pretty=True))
     response.headers.set('Content-Type', 'application/rss+xml')
     return response
 
