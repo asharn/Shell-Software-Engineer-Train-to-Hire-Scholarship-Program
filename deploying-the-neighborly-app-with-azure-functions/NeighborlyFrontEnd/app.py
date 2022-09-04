@@ -8,7 +8,6 @@ import json
 from feedgen.feed import FeedGenerator
 from flask import make_response
 from urllib.parse import urljoin
-from werkzeug.contrib.atom import AtomFeed
 
 app = Flask(__name__)
 Bootstrap(app)
@@ -22,14 +21,14 @@ def get_abs_url(url):
 
 @app.route('/feeds/')
 def feeds():
-    feed = AtomFeed(title='All Advertisements feed',
-                    feed_url=request.url, url=request.url_root)
+    # feed = AtomFeed(title='All Advertisements feed',
+    #                 feed_url=request.url, url=request.url_root)
 
     response = requests.get(settings.API_URL + '/getAdvertisements')
     posts = response.json()
 
-    for key, value in posts.items():
-        print("key,value: " + key + ", " + value)
+    for post in posts:
+        print("Post is : " , post)
 
     #     feed.add(post.title,
     #              content_type='html',
@@ -39,6 +38,7 @@ def feeds():
     #              published=post.created_date)
 
     # return feed.get_response()
+    return posts
 
 
 @app.route('/rss')
