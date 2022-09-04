@@ -1,4 +1,3 @@
-azure-functions
-pymongo
-bson
+azure-functions==1.11.2
+pymongo==4.2.0
 

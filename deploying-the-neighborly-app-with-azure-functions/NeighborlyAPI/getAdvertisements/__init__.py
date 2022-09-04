@@ -1,6 +1,5 @@
 import azure.functions as func
 import pymongo
-import json
 from bson.json_util import dumps
 import os
 
