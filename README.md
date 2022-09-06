@@ -25,7 +25,7 @@ Content to view all the projects are listed below:
   2. [**Employee Polls Web App**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/employee-polls-web-app#readme)
   3. [**Exploring Near-Earth Objects**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/near-earth-objects#readme)
   4. [**Deploy An Article CMS to Azure**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/blob/main/deploy-an-article-cms-to-azure#readme)
-  5. [**Fifth Project**]()
+  5. [**Deploying the Neighborly App with Azure Functions**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/deploying-the-neighborly-app-with-azure-functions#readme)
   6. [**Sixth Project**]()
   7. [**Seventh Project**]()
 
@@ -76,8 +76,8 @@ This program contains 6 major projects with a deep concept of node for app devel
       6. Project: Exploring Near-Earth Objects
     </strong>
 
-  5. Advanced Python Techniques
-   In this forth course, you learned about the advanced python.
+  5. Azure Applications
+   In this fifth course, you learned about the Azure applications.
     <strong>
       1. Getting Started - Azure Setup
       2. Introduction to Microsoft Azure Development
@@ -85,6 +85,16 @@ This program contains 6 major projects with a deep concept of node for app devel
       4. Azure Storage
       5. Security and Monitoring Basics
       6. Project: Deploy An Article CMS to Azure
+    </strong>
+
+  6. Azure Microservices
+   In this sixth course, you learned about the Azure microservice, Kubernetes, cluster, nodes, Deployments and much more.
+    <strong>
+      1. Introduction to Azure Microservices
+      2. Serverless Functions
+      3. Enterprise Logic Apps and Event Grid
+      4. Deployment
+      5. Project: Deploying the Neighborly App with Azure Functions
     </strong>
 
 ## View Certificate
