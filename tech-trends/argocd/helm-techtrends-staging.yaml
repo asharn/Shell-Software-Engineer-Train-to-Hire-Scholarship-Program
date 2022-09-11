@@ -12,6 +12,6 @@ spec:
     helm:
       valueFiles:
       - values-staging.yaml
-    path: tech-trends/helm
-    repoURL: https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program
+    path: helm
+    repoURL: https://github.com/asharn/techtrends
     targetRevision: HEAD
