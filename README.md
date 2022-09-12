@@ -26,8 +26,7 @@ Content to view all the projects are listed below:
   3. [**Exploring Near-Earth Objects**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/near-earth-objects#readme)
   4. [**Deploy An Article CMS to Azure**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/blob/main/deploy-an-article-cms-to-azure#readme)
   5. [**Deploying the Neighborly App with Azure Functions**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/deploying-the-neighborly-app-with-azure-functions#readme)
-  6. [**Sixth Project**]()
-  7. [**Seventh Project**]()
+  6. [**TechTrends**](https://github.com/asharn/Shell-Software-Engineer-Train-to-Hire-Scholarship-Program/tree/main/tech-trends/techtrends#readme)
 
 
 ## What you will be learned?
@@ -96,6 +95,17 @@ This program contains 6 major projects with a deep concept of node for app devel
       4. Deployment
       5. Project: Deploying the Neighborly App with Azure Functions
     </strong>
+  6. Cloud Native Fundamentals
+   In this seventh course, you learned about the cloud computing, PaaS, SaaS, IaaS, FaaS and much more.
+    <strong>
+      1. Introduction to Cloud Native Fundamentals
+      2. Architecture Consideration for Cloud Native Applications
+      3. Container Orchestration with Kubernetes
+      4. Open Source PaaS
+      5. CI/CD with Cloud Native Tools
+      6. Project: TechTrends
+    </strong>
+
 
 ## View Certificate
    <object data="certificate.pdf" type="application/pdf" width="700px" height="700px">
