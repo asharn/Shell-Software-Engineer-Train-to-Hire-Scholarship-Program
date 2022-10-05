@@ -14,11 +14,12 @@ class Person(db.Model):
   name = db.Column(db.String(), nullable=False)
 
 with app.app_context():
-    db.create_all()
+        db.create_all()
 
 @app.route('/')
 def index():
-  return 'Hello World!'
+  person = Person.query.first()
+  return 'Hello ' + person.name
 
 
 #This code goes at the bottom of your flask Python file(this is actually your server)
